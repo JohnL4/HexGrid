@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="518.15613"
+   height="285.91403"
+   id="svg3221"
+   version="1.1"
+   inkscape:version="0.48.1 "
+   sodipodi:docname="hexgrid-edges-and-vertex-values.svg"
+   inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs3223">
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter2997-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="multiply"
+         in2="BackgroundImage"
+         id="feBlend2999-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter2997-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="multiply"
+         in2="BackgroundImage"
+         id="feBlend2999-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter2997">
+      <feBlend
+         inkscape:collect="always"
+         mode="multiply"
+         in2="BackgroundImage"
+         id="feBlend2999" />
+    </filter>
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mstart"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3944"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.4,0,0,0.4,4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3947"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0684127"
+     inkscape:cx="236.54374"
+     inkscape:cy="132.02211"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1189"
+     inkscape:window-height="788"
+     inkscape:window-x="214"
+     inkscape:window-y="74"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3226">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-98.064783,-72.262306)">
+    <image
+       style="opacity:0.5;display:inline"
+       y="72.262306"
+       x="216.22093"
+       id="image3930"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAEWCAIAAADHNFZeAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4 nO3dQWjbaLsv8HcuHpChAzZ0wIIO1NBCNXSgDh1oTAuNaaFVJzBW8MLyySIVWRSf78JlvnvgcmZ1 v36re3LOoogsgpKFkbwwUQ5kqhRSlEKLEphgByZEgQko0IAME5ChAQkm0Luw62RaJ7FlWdKbPr9l m6bvZPz+H/t5Xr394v379wgAAHDwP4JeAAAAdAsCCwCADQgsAAA2ILAAANiAwAIAYAMCCwCADQgs XG39tmXbdtCr8I6NqrVq0IvwkvnWNN+aQa/CS1u14F9ykWD/euCCYRjCjGDsGegQsePso4ePgl5R v9RlVSgJCCHyIll8UkxeTQa9or7Y7+zZ0qz6SiUiRPp2+vH44+hX0aAX1Rfjd4Of5s19EyHEjXOZ +5mgVvIFHBzFSHMnaG80+h6duZ8x90ypItmOXXxS/Pa7b4NenRtb+tbszKx1YHF5Lnklqa1p8qJM XaOKT4rxeDzo1bnxfPG5VJFS11J0lo6i6PzifG2jhm9dsS2bn+Nr6zX6BzpzJ2PsGmJFRAj9/W9/ D6SuQGBh4/nic6kspa6n6Cwdv3C0masbVakiUVcobpIjSTLAFfbko51w9BuHSF6StTca8wMzlhtD Xwa3xB5Va1VhRkARVMgXkpeONrNZN6WyZB/Y3BNuKDUU4Ap7NV+Zlxfk1I3U2OgYcYFo/3p1vSot SNQ1qjhZjH/ta12BwMJA9deqMCegCOLyHHmpUyQdImVZUV+p9AOayTHRaLg/gNhIrIjKCyV1MzU2 OkYQxKdfYu1b0oJk7BrFJ8X0cNr/NfbEfGsKc4K+o7NZduhm50iqblTlBTl5OYlFXdFea0JJiMfi bI4lE51fcoHUFQisUOtmJ7RZB5ZckfUdPdguw+maO4GMkUyO6bwTjjF2DLEiRi9Ei0+KyWQoG1s2 EkqC8lLJ3M0wD5kze8LKsqK+VDN3M+w4G8660uyQmnWTyTJDN856yTUsqSIZu0Zxspi+40ddgcAK KfudLZUl5aVC36Pp+3T305FmlyEaiYate238bghzglk3C7kCdZ3q/g+qr1XlFyV9K/14Ilzd6+dL z6WyRF2hmCwTj3X7ycg6sJQFpbZdC1tdac8KmAdMTwvzs65AYIWRu51wnLauyQtyIF2GT300K3Dx HRzHURYVbV1jcszYD8E3trZ+25qdmbUP7UKukLziZosae4ZYFhFCxclQDExO6pB2T3utyb/I6Zvp x5MDrCsQWOGy9dsWP8OjQ1TIF5KX+ytW4ehezy/MyxU5dT01lv1L49YFs27KFdlsmMUnxaC619Yf ljAn1DZqTJZJ3+r3Q1CA3eujNZzZIe2a4zjKkqKtDbCuQGCFRWsnbNaYUQ92wtG39b3L0NbcCVEi yubYPnfCcfq2LpZF8hJZnCyS3/jYvbaRWBHlX+TM7Qz9kO44K3DjQ12hH9CFfMHPutJTh7SHb9us K/tm8Ulx6HuP6woEVgj8icSSKL/weicc43P32nxr8jO8sWuwOfbMxq076rLabHX7071Wl1WxLJIJ ks2x8YvevxWyGpa8IBu7BjfB+VFXepwVuKBv62JFJBMe1xUIrIC1dsIlks0OZCf85e8afPe6OStQ X6mZu5meZgUuOAfO/MJ8bXOwxzKN3w1+hrcaViFXoK71MCtw83c16wox2IFJ/x3S7rXqyu0MO+FN XYHACoyfO6FtoF2GZuOWuubHTmhrHfc/tD3vXh8dbX1AZ0b8G+c1j/unb6TZCdbb4/5HHVK3swIX nAPHw+P+EFgBOPGQt1+Ougx/86Z7vVXb4ud4hFAh1/eswJX2cf/iE2+6161ZwSeHvP1xVFeyzNiP HtQVb2cFLnj1GBkElt9OetzBf550r03TFGYEfVsPaicc8ei4f3W1ys/x8QtxNn/CIW+/NI/7m3sm N8m5P+4/oFmBK/0/RgaB5Z+zH3cIgvvutY3Esqi8VNK30wNq3LrQ7F7rOzo3wfX6Oc4wDGFOMPe6 OuTtm2b3Oh6L//S3n3qtK4OeFbjRX12BwPJDOHdCm4suQ/NCmOTlpA+zAhd6Pe5vv7OlkqS86vm5 At+0BiZdX1YTSIe0e64fI4PAGqz24w70A5q+Twe9nNN02b1uXghjO+4Pefum2b1O3UhxE9wp3evW rOA6xWQZd4e8/XFUV/Lso9ET60pQswIXXDxGBoE1QMevRgrzTjjulC6Dbdn8DF/bCGxW4Mapx/23 alv8DI8igc0KXDDrplSR7Ebny2qCnRW409MlaBBYA9F+3OGjq5Hw8GmX4cOFMOlb6cAbty582r1u HfLe1tmcl4e8fdO8rIa8RBafFJt1JTyzAje6fowMAstjlmnxM7znjzv4r929Zh4wykuFvNjVhTBh pu/ozQ508lJyoIe8fdMcmND3aH1XD22HtHvdXIIGgeWx//jP/3AOHG6cw3ontBm7xtR/Tj1+/Bjr nXCcXJar29Wf/tdPvh1tHSjrwOKneTJBcuNc0GvxhrFj/PM///l88XnH34V/Ncd7ySvJ85FWCKFm ZyfkzfWexBKxeCx+PtIKIRS/EI9Gorg04Lpx+osNAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0I LAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGAD AgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADY gMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAA NiCwvKS91mrrNeWFou/oQa/FC4dILIsIIakkWQdW0KvxgLlnqm9UwzDUZTXotXhDXVGNPUN9qRq7 RtBr8YayrBBR4qTf/eL9+/d+rua8MgxDmBHMusnkGL2mr6yuUBTFjrNkjAx6aS6py6ryUkleSmbu Z8SK2PijQT+k6Yd00OtyyTqw5Ipc26xl7mYSsYT03xJBENwER12hgl6aS8aOIVZE58Chc7Re01d/ XU19l2LH2fiFeNBLc6m6UZUqUvpmmh1n4/HO/xUQWP2y39mzpVntjUbfozP3M61fddDT6ad1o565 k2GyDIoEusQe6Tu6WBbRISrkCtT11n6ublRnS7NEhODGufYv4kJekrVXWvJKkskx7RIilsSV1RXq KsWOs+RFnOqKc+AIZcHYNjL3Mu0SYjUsfpqvm/XM/QwzygS7wl6Z+6YwJ0Qj0eKTYvJq8pSvhMDq y/zCvFyRU9dTY9kx4sLH72ONHYOf4x3HYXNs+lY6kBX2xNw35Yqs7+jMA+YofI+RF2R1RU18k+DG OTKBwSbX1jVlUUERxOW55JVPdoKDnj57Wn+LT12JILkiq2/U1PUUk2M+fTOlb+pCSXCQw+bY9E0M XnKO48wvzNc2a8XJYvrO2QuGwHKp+mtVmBOiRJTNseSl07auuqLKC3IsHuMmuOTl06pHkCJILIur a6upGykm22EnHHHQ1MyUruvDw8OFXIEgTmw3BMusm1JZMusm/QOdudMhfNtadeWdw7KhrivamqYs KkSMKOQLyUunvZCURUVZVhJkojB+xlcGS32tKr8o9AOayTHRaLSbPwKB1TPzrcnP8MauwWbZoZtD Xf4pYU5Y/XU1lUqx+dB1GdQVVXmpxGKx7t83mXWTn+YbVoMZ7fxeLEiHSCyLqxurwzeHC7lCl++b wlxXjD1DLIuNRoPJMt2/b+Kn+dpvteHvhzu+FwuWvq2LZTF5JVmcLMa/7mFtEFg9sN/ZUllSX6mZ uxn6Pt3rJwirYU1NTzXMRni6DMauIVZEp+HQWdrFJwhtTZMqEhEhuAmOuhaKxlZrVnA5yeQYF52p Vl0JTff6+KzAxWvGqltT01MNq0GP0vT9UAxMrIYllSXrwCpOFr/97tte/zgEVreeLz2XShJ1jWKy TDzm/qXc7DIghJhcD9XSc9aBJZUlfVun79L0aF8vZbkiKytK4N3rjrMCF8LSvY4geUFWX6nUNer4 rMCF6kZVKkkoggIemBwieUHW1jV2nH308JG77wGBdbat2hY/x6NDVMgXvPqwIC/K6rKaIBPchO/d 6wiSF2TtlUZdpzz7sOCgp8+e7hq7IyMjhWy3n8K80pwVGLvGXwa1/Wl1rw8dNh9A97o5KyAIwsuX XEVWV9REMsFNcH7XlQjS3mjygpy5l2HzbJftqo4gsE5jmqYwJ+ibOpNlBtGO9b/LoK1ryoJCXPBy J7QZuwY/wzvvHCbHnN7n9kz3swJXlCVFWfK1e939rMCNDwOTkeGRsdyYPwMTY9cQSgKZIItPiiTZ b1BCYJ3ARmJZlF/ImbsZ5uEAB96+dRnMPVOqSOa+yYwOJHzbWt3rr2Lc5GC7181ZAXmRZPPsQN+l +lRXDpFQFmobtcztDDM6wJecb3XFalhSRbL2LW6SG0p1O546HQRWB+qyKpSE5OUkm2XjF/144zPY LoNfO+G45rHMFJVixvvqv3TU56zABWvfmno21bAGddxfXVblFzJ1hXI3K3ChNTAZ2HF/ZVFR36hM jhn7YQx96dm3hcD6iy19a3Zm1jqwOp8zHLBWl+Fqghv3rMsgL8nqS5W6QjF574PjdFbD4mf4+lsv u9fNQ976tk7fC+A5oUHUFX1TFxdEhFAhX/D/OaHWcX8PHyOLoOp6VSpL6dvpx+OPo1+5b1d1BIHV Yls2P8fX1msD6R10z7suQ7A7oc3YMfgZ3jns+7h/BCkLivJKOemQt2/kBVld9qB7PYhZgRveHfc3 9gyxJMZjcW6SSyYHUu8hsBCykVgRlRdK+maaHqXDcHS7zy7DYBu3rjS717GvY9wE56J7PdBZgRvN uvK7PvK9q7pyiMSKuLq+OnxzeCzrU/P7dH0+RuYcOOKCaOwY3CSXHh7gh/TPPbC015pQEsgYyeSY sD0cp61pkiQRX/XSZQjfTjiOn+FrtVpPx/19mxW4YOwZ/DTvvHOYLJMZ6bYwqCuq8kIhL5FsbrCz AhfcHfdXlhX1pcpkmbEfvWxXdfT5BpbxuyHMCWbdLOQLITml3ZFYEld+XUldPbt73TzkTV4i2Xx4 rx+w9q2p6amuLqs5REJJqG36OitwofvudetCGMfp82jroAlzQq1Wo76jzqwrzQthUjdS3AR30oUw 3vocA6vzhTBh5qCn//W0bp7YZcBlJ7Tpmzo/xxMR4qTj/h0vhAmz07vXwc4KXLAa1tSzqcYfJz5G Zu6bUklCCJ15IYy3PrvAOv1CmDDr2GVwGo5QFvQdnX4QlofFutfxshp9UxcrIooEPCtwo2P3esBH Wweq42Nk7QthuAmu+w/CXvmMAqv7C2HCTFlWlEUlFo9xk5y2qmG6E46bmp7Sf9OHvx/OjGTkBTlU swIXjtcVhJC8KMdisTMvhAmz9mNkhfGCYRi9Xgjjrc8lsNRlVZgT2Dw7dMObE7fBEuYEY89oPWuG 7U5oM+umMCfUzfrwcBhnBS6oK6q2rjX2G8E+4u6h5nH/VCr1099+6ulCGG99Lv8IhX1gp26kzkda IYS4CQ4hNDY6dg7SCiFEJsjCeIGIEoV8eG8E7ElmJJNMJFM3UucjrRBCxSfFy99c5ia4ANMKfT6B BQA4ByCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGAD AgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADY gMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAA NiCwAADYgMACAGADAgsAgA0ILAAANiCwAADY+DwCy0Y1vWbsGtaBFfRSvGHWTefA0XU96IV4Rv9N d2zH2DWCXohHDlG9Xjf2DMdxgl6KN5wDp3HQCHoV6Iv3798HvYbBUldUsSSSMdI8MBt/NOiHNP2Q DnpRfThEYllc3VilrlD6jk4QBDfBUVeooJflnrlnSmXJbJhkgjR0g0pRbJ6NX4gHvS731GVVeanE EjGn4TSsBjPKZO5ngl5UX5QlRX2lMllm7Mcx9GWQKznPgWX8bghzgrlvFnIF6hqFEKpuVGdLs0SE 4MY56jp+m7y5E5KXk0yOIS+SCCGxJK6srlBXKXaCJWNk0AvsjXVgyRW5tlnL3M0wowxCyGpYU8+m Gn80Mvdbv4IXY8cQK6LjOIVcofkC09Y0qSLhW1eqG1WpIqVvptlxNh4Pvoqcz8Cy39n8DF9br9EP 6MzIx8VNXpDVFTXxTYIb58gEHptc39HFsogOUXsnHHHQ02dPd41deoRmsgyKBLTEHslLsvpSpa5R TI75KGr1TV0oCQghJsekb6YDWmBvnIYjlAV9R6cf0PT9j9/Ci2Vx5fUKdZVix9lmpQk/s24KJSEa iRafFJNXk0Evp+UcBtb8wrxckVM3UmOjY8QFovMXOWhqZkrX9ZHhkbHcGEGc8GUhYO6bckXWd3Tm wWmfLIwdg5/jHcdhc2z6Vqg3ubauKYsKQRCFfCF5+cSdIC/K6rKaIBPcRLjrSgSJZXF1bTV1I8Vk mRM/zOJTVxzHmV+Y17d1boJL3wnXa+lcBVb11yo/w8cvxNkcS146+yVu1k3+Gd94F9YuQ5c74Rh1 RZUX5Fg8xk1wp2RBUMy6KVUkc8+kf6Azd7r6gfPTfO232vD3w0yuq5+Az7Q1TV6UY7FYIV9IXjr7 B27sGvwM77xzmBzT5U/AZ+qKqrxQ6Ac0k2Oi0WjQy/nYOQkswzCEOcHcM5ksM3RjqKc/G84ug7qi Ki8V8iLJ5tle318Ic8Lqr6upVCpE3etDJJSF2kZt+NZwIVvo6f2FWTf5aT5s3Wtj1xArotNw6Czd 6+fWcNYVfVsXyyJ1jeImuPjX4XjZfAL7wLLf2VJZUl4q9D2avk+7fqcdni5DPzuhzWpY/DRfN+th 6F5/OitwITwDE+vAkstybftoVuBOq65QKXacjceCDAirYc2WZm3HLk4Wv/3u2wBXcia8A+v54nOp LFHXqS4/MZ3BQU+fPa0b9cxIJpAug3PgCGVB39bpe96cvQi8e61v6uKCiA5RId8a1PZJrsjqippI JrgJLoC6EkHygqy+UlPXU558RLUaFj/D198GVlccx1EWFW1d4ya48Lx7PQWugbVV2+JneBRBhdxp jVsXgukyeL0TjlMWFWVZ8bl73ZwVGLsGfY/2eCcENDDpclbggrFj8DO8c+iweda/uhJB2htNXpAz 9zJsng1hu6oj/ALLfGsKc4K+rbM5duhmb+2q7vnZZdDWNWVBIS54vxOO8697fYjEiri6vjp8c3gs O6hA8bOumHumVJHMuslkmcFNYJUlRVlSEmSiMN5V/74fxq4hlAQyQRafFEkyxBPYT2AVWDYSy6Ly UknfTjMP/fjINuguQ2sn7JvM6AB3QptVt6ampxpWgx7tcFbIE61ZQYJkcz3PClzQ1jRJkoivBjYw +TAryNzOMKN+vOT4Gb5Wqw1uYGI1LKkiWfsWN8kNpQZV7wcHm8B6vvRcKkvJy0k252uHclBdhkMk lITapn87oa26UZVKEoogb7vXrUPeB04h/8nR1gETS+LKryupqylm/OMzqP1oHW29QjF5L7/tmax9 a2p6yvPHyJxDR1lStDcak2PGsmNefVufYRBYW/rW7Mys7diFXCF5JZgZsLFt8HOedRlOOeTtGw+7 181ZgbFtZO5lAntOszkweVsfvjNcyBX6/GatWQFChXwhqJMu7akom2d7PanzsQiqrlelipS+lX48 /jj6FR7tqo5CHVjWH5YwJ9Q2at2fMxyo/rsM+qYuVkQUCXInHOm/e90+2jqAWYEL/R/3N/dNqSSZ dbPjQ13+6/8xMmPPEEtiPBbnJrlkMixnvlwLa2DZSKyIygslfStNP6RD9eiMuy6DWTelsmTWezjk 7Q/X3WttTVMWFSJGdHnI2zfNutLzwMSXWYEbH+rK8PBwIVfofmHOgSMuiMaOwU1y6eFwPWHjWhgD S3utCXMCeZFkckw4HyLrrcsQ2p1wTE/d6+bR1kajwWTD+3ByT8f9m8+jkJd8mhW40Otxf2VZUV+G 4kIYb4UrsFoXwtRNr84ZDlQ3Z6+bh7zJSySbx+Ax/dZlNRTFjne+rObTC2HCrF1XThmYfHohTJi1 HiOLENwEd9IGaV4Ik7qR4ia4MFwI462wBJb9zp6dm9XWNO/PGQ7YSV0GvHbCkQ/d68ydvx73/3C0 lbpG+Tyo7ZO+qfMlnkDER8f9rYYllSV9x7PnCnwjV2T1tZpMJj96jKzZgEMIhepCGG+FIrC6uhAm zP7aZUAOOuVqJCx81L0e3CFv37TqSvO4/yWy12swQufDZTUjIyOFbME5dOYX5mubNW6CC8OsYHAC DizLtH7+x89RItrlhTBh1uwyxGNxY8/AeCccoywryqKS+CbR2G+EbVbgDj/Nm3XTOXS6vxAmzNoD EyJKhPZCGG8FHFhbv23xM/zP//vnANfgran/mkpeSYa/v9O9f/2f//qP//sPjD4Dnk5ZUqqb1XP1 kns2NTIy8ujho6AX4ofg/9WcKDpXNYGIEEQEw0+1pwvx9Zi9IggiGjlXL7nExQTu7+W7F3xgAQBA lyCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsA gA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMAC AGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCwAADYgMACAGADAgsAgA0ILAAANiCw AADYgMACAGADAgsAgA0ILAAANgIOLOfAsQ/tYNfgLefQcQ6doFfhnQhCCKHDgFfhpUNkO+ftJRf0 Evzzxfv374P5m20kVkT5Fxn9iYivCG6Co65QwazEI2bdlMqSsWcgG1Epis2z8QvxoBfVF3VNVRYV x3HQn4jJMpmRTNAr6s8hEivi6voq+hPF4jFugkteTga9pr44B464IBq7xs//5+dkEu//li4FE1jq siqWRTJBsjk2fjEulsSV1RWKothxloyR/q+nX4dIKAu1jdrwreFCtmA1rKnpqcYfjcz9DDPKBL04 N4xdQ6yITsOhs3T6Zlpb06SKRBAY1xV1WVVeKuQlks2z5EVSmBNWf11NpVKY1hXn0FGXVfWVymSZ sR/H0JdBL8gvfgeW8bshzAnmvlnIFahrx176Dnr67Gn9bT1zJ8NkmdYnERw0d0LycpLJMeTFo7TV N3W+xBOIYHJM+mY6wBX2xDqw5Ipc26xl7n6ctq26cpVix9nj/6UhZ+wYYkV0HKeQK1DXj15yrbpi 4ldXqhtVqSKlb6bZcTYexy9t++FfYNmWzc/xtfUa/YA+6cOFsWPwc7zjOGyOTd8K+ybXN3VxQUSH qJD/a/geIy/I6oqaIBPcBEcmwr3JI0hekNVXaup6iskxnd93YFVXnIYjlAV9R6cf0PR9uuPX6Ju6 UBIQQljUFWPPEMtiNBItPikmr34WnwE/4lNgzS/MyxU5dSM1NjpGXCBO/2JlWVEWlTB3Gcx9U67I xq5B36Mz98/u7PDTfO232vD3wycGQdC0dU1ZVAiCKOQLZ/7MW3XlncPm2PSdUG7yCBLL4uraaupG isme/TNXFhVlWQlzXXEcZ35hXt/WuQkupD9zXww8sKqrVX6Oj1+IszmWvNTDS0GYE2q/1kLXvY4g sSSurne7E9rMuslP8w2rwYwy3WScb8w9U6pIZt1kskxP72rVFVVekENYV9TXqvJCicVi3Hhv6RPa uqIsK+pLlX5AF/KFz6dd1dEAA8swDGFOMPdMJssM3Rhy8R2shjX1LETda3VFVV4qzVmBuzpc3ajO lmaJCMFNcCd9ivTPh1lB5naGGXX5+a7Zvaa+ox6PPw58k380K3DxHay6NTU91bAa9OiJnyL9pG/r YlmkrlHcBBf/OkQZGpSBBJb9zpZKkvJKoe/R9H26z05HGLoM+q4+X553DtzvhOPkiqy+VpPJZIDd a2VJUV4q1BWKyTN9TmathsXP8PW39QDriuM4YkmsbXeYFbhQ3ahKJQlFEDfOHe/T+8ncN6WSZB/a xcnit999G8gaQsj7wHq++FwqS9R1qqdPTGcKqnvtHDhCWdC3dfoeTT/0ruQ66On0093fd0eGRwr5 gp/d69asAKFCvuDhGYVmXXEOHTbP+lpXupkVuCJXZHVFTSQT3ATnZ11xHEdZVLQNjRvnQtU9CAMv A2urtsXP8CiCCrmzG7fu+NpliCC5IqtvvN8Jbcauwc/wjuMwPzKZOwN/aTaLtlk3TxnU9klZUpQl JUEmCuOF5KWBN7a0dU1ZUIgLXc0K3HDQ1MyUrusjwyNjuTGCOGNe1K8IUldU5Rclcy/D5tloNDrY vw5D3gSW+dYU5gR9W2dz7NBNN+2qHv4uX7rX2pqmLCpEjCjkB77xtBVNWpCIr4jiRDF5ZTB/14dD 3sM3h8eyA994rbqSGmbyg6orrmcFLrTqyjuHyQ2wrhg7hlAWkpeT3ARHkmGcVIZB34FlI7Esyi/k zN0M89C/gzlH3WuvuwzmnimVJbNhMqMD3wnHiSVx5deV1NUUM95vU+kj6oqqvFDIS+5nBS5Y+63j /vRDTz9KI29mBS5oa5okSYN4jMw6sKSSZDUsbpIbSg223uOur8B6vvRcKkvJy0k2x8ZjAYwwml2G 5FVvutenHPL2x1H3eiTDZD1YwEmHvH3jeV2Rl2T1perJrMCd5nH/FOVRXTlE8pKsvdHYcfbRw0de LPCccxlYW/rW7Mys7diFXGFQn2K65KCp6Sn99367DK2dcI1icsHshIbc3xEAAAm0SURBVDZjx+Bn eOewr+P+g5oVuCIvyMqycjl5udeDUccNaFbghifH/SNIW9Pkipy+nX48/jj6FbSrutJzYNmWzc/w tY0a8wMTnhO3/XSvezrk7Ztm9zr2dYyb4HprovV4yNsnfXSvm9dgmHWT/oH2YTTRpX4eIzN2DbEs xi/Gi5NF8htoV/Wgl8CykVgRlRdK+laafkgPfGLSu3aXocvudTh3wnH8DF+r1bq/VEBb0+RFORaL +TArcKHngYm/swIXen2MzDlwxIpo7BncBJceDku9x0i3gaWuqGJJJC+STI4J58NWbV11r/96IUyY H+LtsnvdPOTdaDSYbNgf4u3yspqjWUE+7JdDdPMY2dGFMDlm7IfP6EIYb50dWCdeCBNiR93rOxkm 93H3+qQLYcJM39T5OZ6IEEyeSd/4Sx4FPitwRyyLK687X1YT+KzAhXZd6Xjc/3O+EMZbpwWW/c6e nZvV1rQu7yQIm0+7DEcXwowH3bh1pXXc/5tEq3v94ZA3dS1kj4h3yUFPnz3dNXbpEbrZvXYOHKEk 6DuhmBW48OklaK0LYYho8UnxM7kUdKBODKyeLoQJs2b3OvlNkrhAdH8hTJhNPWt1r/UdPWyzAhfa A5PUjVRtoxauWYEr7cfIyARp7Bqf+YUw3uocWLZt/wv7L//+b//e04UwYTb1bMp27L//7e8hbNy6 0OxeD90cwugz4OmadeWnf/sphLMCd57+v6dxIv70n0+hXeWhk//VnC/RuUkrhFAikSAvkucjrRBC zc+D1FX8PtWehPqOIqLEuUkrhFD6Zpq6TkFaeQv+XUIAADYgsAAA2IDAAgBgAwILAIANCCwAADYg sAAA2IDAAgBgAwILAIANCCwAADYgsAAA2IDAAgBgAwILAIANCCwAADYgsAAA2IDAAgBgAwILAIAN CCwAADYgsAAA2IDAAgBgAwILAIANCCwAADYgsAAA2IDAAgBgAwILAIANCCwAADYgsAAA2IDAAgBg AwILAIANCCwAADYgsAAA2IDAAgBgAwILAIANCCwAADYgsAAA2IDAAgBgAwILAIANCCwAADYgsAAY jEjQCziPOgdWNBIlIoRYEZ0Dx+cFDYKxZ+ibem2zpq1rQa/FCxGkrWmNPxrKkmLWzaBX4wHHcdRl 1bEdeUF2nHPxkts11Fcq8RUR9ELOmy/ev3/f8Tfsd/ZsaVZ7o9E/0Jk7GZ+X5RXnwBEXRGPH4CY5 8iLJT/P2oV3IFZKXk0EvzSVj1xBKApkgi0+K1Y2qVJZSN1JjD8eIC7juDXVFVV4o9AM6cz8jV2Rt XWNGmfStdNDrcslqWFJFMutm8UlxKDUU9HLOmxMDq8l8a/LTvLlvFnIF6hrl27I8oSwr6kuVyTJj P46hL1u/qC6rQkmgrlFMlolfiAe6wN40d4K1b3GTXHsnHNWVB3RmBLO6om/rYlmkrlHcBBf/uvX/ wjAM/hlvO3YhV0hewamuOIeOuqyqr1Qmx4z9cPSSAx46I7CatFVNmBOSiSSTZeIXMdjk1c2qVJZS 11PcJBePf7xg27bliqy8UDL3MvQIHf5eg3PoqEuq+ubEnWC+NfkZ3qxjU1eshjVbmrUduzhZ/Pa7 bz/9Au21JswJyctJJsvEY6F/yUVQdb0qlaX0rfTjicfRr6JBL+jc6iqwEELoTzT/3/Pygpy+laYf 0gQR0g8g5r4plSSEUPFJMXn1tPpsmqYwJxg7BpNlhm6E9a17eyfcTj8eP2MnNOsKeZFkc2xo64rj OMqiom1o3DiXuX/qW8I/kVgWlRdK+naaeciEtq4Ye4ZYFuMX4twkl0zi9JYQR10HFkIIIcuypJIU zi6D4zjzC/O1zdrZO+GYrd+2+Bk+SkTZLEteIge6wl4Ze4ZYEuOxXnbCn2j+l3m5Esq6EkHaG01e kDP3MmyejUa7ehti/WEJc4K+rTOjzNDNcNUVx3HEimjsGNwEl74Tru1wXvUWWE3G7wY/zduOXciH pXutvlaVXxT6Ac3kmC53wnHPl55LJSl1Myzd6+OzgvRwzzuhVVfWNCYblrpi7BhCWUheSnKTHEn2 XBiadQUhxOW5kNSVjh1SMGhuAqspJF0GY8cQSkLySpKbcLMT2mzblkqS+koNvHvt1U4wDIOf5u2D gLvX1oEllT+eFbjTHJikrqfoUTrAgYm+qQtlIXU9dXxWAPzhPrDQ8e713Qx93+/utdWwpLJkHVgn NW5dCLZ7Xd2oShUpdSPFTXSYFbgTZF05RPKSrL3R2Dz7aPSRJ9/Stm2pLKkvg6kr3XdIwYD0FVhN AXQZDpG8KGtrGjvOPnrozU44rlqr8tM8eZFksgyZ8OMDyGB3wp9IrIjKLz52r3uZFbhgmqYwIxi7 /g1MHMeZX5yvbfTWIQWe8yCwmlrd60iUzQ2ye91u3N7NsOPdNm7d8Kt7fTQrmOAG+pbBt7pi7Bpi WYzH4sUnRfKbAcZ9tVYVZoT4hTiTG2xd6bNDCjzkWWA1qcuqMCekbgyky9DaCRfjxcnB7oQ2+509 OzerrQ3quL//O2FL3+KneYRQIV9IXvL4rZxz4IgV0dgzuAk3swJ3ni8+l8qDGph41SEFXvE4sNBg ugxHjztMFoe+93u2bRiGMCNYDcvD7nXzkHdQO8Hz7vXRIe8gpmat4/5rGv3As7rS6pA2rOITzzqk oH/eB1aTaZr8NG/umUyOGbruPmLC87iDtqoJM0LyUr/H/QcxK3ChXVcy9zL0fbqfb9WcFaRvptlx 1qtZgQuePUbWnBWsaWx+IB1S0I9BBVZTq8sQi7vpXofwcYf2cX9X3WvHcZQlZXCzAhf67F43D3lH I9HwTM36eozMtw4pcGuwgdV01GUYHeuyex3mxx0syxJmhNpmrYfj/q4OefumWVeiF6Jsju2yrjRn Bfq2HsZD3sceI2NGu60r/ndIgQt+BBbqpcuAy+MOreP+XVxWc3QhTLh3QvfH/ZtHW+kHdCFfCO0h 7+4fI2sebQ2qQwp64lNgNTW71+a+WcgXqCsdugzYPe6grqjCnEBdoToey8TuaqQzL0HreCFMmJ3+ GFl4OqSgS74GVlPHLoO+rTfnVrjshLaOl9VgvRM6dq+bR1vtQ7v4pPgthdnUrONx/+b1h+lbAc8K QE8CCCyE/tK9TqVSckVGmD/ucPyyGoRQuGYFrrQuq0mQzENmdXW1qwthQuz4Y2QURYmVkHZIwekC CiyEULN7PSecp8cdmsf9z89O+FBXwjkrcKF93D/kHVJwkiADCwAAegL/zBcAABsQWAAAbEBgAQCw AYEFAMAGBBYAABsQWAAAbEBgAQCw8f8BDwHnr1efd0EAAAAASUVORK5CYII= "
+       height="278"
+       width="400"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;marker-start:url(#Arrow1Mstart);marker-mid:none;marker-end:none;display:inline;filter:url(#filter2997)"
+       d="m 537.82539,100.66878 0.38424,40.72882"
+       id="path3105"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline;filter:url(#filter2997)"
+       d="m 502.86008,80.304374 34.58108,20.748636 34.96531,-20.364406"
+       id="path3875"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline;filter:url(#filter2997)"
+       d="m 503.24432,160.99354 34.96531,-20.36441 34.19684,19.98018"
+       id="path3877"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="542.8205"
+       y="139.47644"
+       id="text3879"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3881"
+         x="542.8205"
+         y="139.47644">v0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="543.20471"
+       y="108.73767"
+       id="text3883"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3885"
+         x="543.20471"
+         y="108.73767">v1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="516.69257"
+       y="124.10706"
+       id="text3887"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3889"
+         x="516.69257"
+         y="124.10706">f0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="560.11102"
+       y="121.80164"
+       id="text3891"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3893"
+         x="560.11102"
+         y="121.80164">f1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="517.07678"
+       y="161.37775"
+       id="text3895"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3897"
+         x="517.07678"
+         y="161.37775">e0-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="541.28351"
+       y="160.99353"
+       id="text3899"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3901"
+         x="541.28351"
+         y="160.99353">e0+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="546.27856"
+       y="86.836372"
+       id="text3903"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3905"
+         x="546.27856"
+         y="86.836372">e1-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="520.1507"
+       y="87.604805"
+       id="text3907"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3909"
+         x="520.1507"
+         y="87.604805">e1+</tspan></text>
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline;filter:url(#filter2997)"
+       d="M 502.86008,80.304374 468.27901,100.66878 433.69793,80.688604"
+       id="path3913"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;display:inline;filter:url(#filter2997)"
+       d="m 432.92947,160.99354 34.96531,-19.98017 34.9653,19.98017"
+       id="path3915"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000080;stroke:#0000ff;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Mend);display:inline;filter:url(#filter2997)"
+       d="m 467.89478,101.05301 0.38423,39.96036"
+       id="path3917"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="463.284"
+       y="90.294441"
+       id="text3919"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3921"
+         x="463.284"
+         y="90.294441">v0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="464.43668"
+       y="154.84578"
+       id="text3923"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3925"
+         x="464.43668"
+         y="154.84578">v1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="489.151"
+       y="115.46661"
+       id="text3927"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3929"
+         x="489.151"
+         y="115.46661">f0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="445.67316"
+       y="124.40756"
+       id="text3931"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3933"
+         x="445.67316"
+         y="124.40756">f1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="483.26416"
+       y="99.131836"
+       id="text5297"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5299"
+         x="483.26416"
+         y="99.131836">e0-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="435.61911"
+       y="100.28455"
+       id="text5301"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5303"
+         x="435.61911"
+         y="100.28455">e0+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="436.38757"
+       y="149.46651"
+       id="text5305"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5307"
+         x="436.38757"
+         y="149.46651">e1-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="487.10651"
+       y="147.92958"
+       id="text5309"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5311"
+         x="487.10651"
+         y="147.92958">e1+</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#800000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997-0)"
+       id="path3034-4-0"
+       sodipodi:cx="445.47726"
+       sodipodi:cy="164.4381"
+       sodipodi:rx="4.0406103"
+       sodipodi:ry="4.0406103"
+       d="m 449.51787,164.4381 c 0,2.23156 -1.80904,4.04061 -4.04061,4.04061 -2.23156,0 -4.04061,-1.80905 -4.04061,-4.04061 0,-2.23157 1.80905,-4.04062 4.04061,-4.04062 2.23157,0 4.04061,1.80905 4.04061,4.04062 z"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(-185.12857,136.61318)" />
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="264.69583"
+       y="304.85504"
+       id="text5337"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5339"
+         x="264.69583"
+         y="304.85504">(0,0)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="214.70399"
+       y="354.8468"
+       id="text5341"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5343"
+         x="214.70399"
+         y="354.8468">(0,-1/(2*cos(pi/6)))</tspan></text>
+    <path
+       style="fill:none;stroke:#800000;display:inline;filter:url(#filter2997)"
+       d="m 259.8053,340.71869 0.54339,-39.66741 -34.7769,20.64879"
+       id="path5345"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#800000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;display:inline;filter:url(#filter2997)"
+       d="m 259.8053,301.05128 -35.32029,-19.56201 0,40.75419"
+       id="path5347"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="110.37329"
+       y="330.39429"
+       id="text5349"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5351"
+         x="110.37329"
+         y="330.39429">(-1/2,-1/(4*cos(pi/6)))</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="107.61835"
+       y="284.34399"
+       id="text5349-5"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5351-4"
+         x="107.61835"
+         y="284.34399">(-1/2,1/(4*cos(pi/6)))</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="210.51028"
+       y="254.45764"
+       id="text5341-7"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5343-3"
+         x="210.51028"
+         y="254.45764">(0,1/(2*cos(pi/6)))</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;stroke:none;display:inline;filter:url(#filter2997);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="296.17438"
+       y="319.12091"
+       id="text5349-7"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5351-2"
+         x="296.17438"
+         y="319.12091">(1/2,-1/(4*cos(pi/6)))</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;stroke:none;display:inline;filter:url(#filter2997-1);font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="297.10715"
+       y="289.77789"
+       id="text5349-5-8"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5351-4-9"
+         x="297.10715"
+         y="289.77789">(1/2,1/(4*cos(pi/6)))</tspan></text>
+    <path
+       style="fill:#800000;fill-opacity:1;stroke:#800000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="M 503.08275,160.85276 468.91992,141.66541"
+       id="path3376"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="465.64404"
+       y="185.18793"
+       id="text4342"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4344"
+         x="465.64404"
+         y="185.18793">f0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="498.40292"
+       y="127.62589"
+       id="text4346"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4348"
+         x="498.40292"
+         y="127.62589">f1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="443.18079"
+       y="166.00058"
+       id="text4350"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4352"
+         x="443.18079"
+         y="166.00058">e1+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="471.72781"
+       y="128.09387"
+       id="text4354"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4356"
+         x="471.72781"
+         y="128.09387">e1-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="509.63452"
+       y="145.87726"
+       id="text4358"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4360"
+         x="509.63452"
+         y="145.87726">e0+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="483.89542"
+       y="184.25195"
+       id="text4362"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4364"
+         x="483.89542"
+         y="184.25195">e0-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="506.82663"
+       y="170.68042"
+       id="text4366"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4368"
+         x="506.82663"
+         y="170.68042">v0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#800000;fill-opacity:1;stroke:none;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS"
+       x="474.06775"
+       y="138.85751"
+       id="text4370"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-edges-and-vertex-values.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4372"
+         x="474.06775"
+         y="138.85751">v1</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,105 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.6 ] */
+
+/* [wxMaxima: comment start ]
+We want an easy conversion from hex-space to square-space, so we can convert
+a mouse click to a hex, and a hex to x-y coordinates.
+
+See this paper: http://www.math.ucsd.edu/~nslingle/bases.pdf
+
+x0, x1 will be the usual Cartesian base vectors (instead of x and y).
+u0, u1 will the hex-space base vectors.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hex-grid-2.png
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Transformation from u-space to x-space (hex-space to square-space), given that base vectors u0, u1 are expressed in 
+square-space coordinates.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+M : matrix( [u0[0], u1[0]], [u0[1],u1[1]]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Given some point p, expressed as a vector [p_u[0], p_u[1]], in hex-space coordinates:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(p_u)$
+p_u: [p_u[0],p_u[1]];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Not sure why (or if) the following is any different:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(p_u);
+p_u: [arraymake(p_u,[0]),arraymake(p_u,[1])];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The same point in square-space coordinates is:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+p_x: M . p_u;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+One would think that inverting M and applying it to p_x would take us back to hex-space.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+M_inv: invert(M);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M_inv . M;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M . M_inv;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+(Maybe we need to tell Maxima to make some assumptions about the u vectors, like they span hex-space.)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+declare (q,nonscalar)$
+M . q;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+at(M_inv . M, [u0 = [1,1], u1=[-1,1]]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+u0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+u0=[1,1];
+u1=[-1,1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M_inv . M;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Seems like it should have been the identity matrix.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

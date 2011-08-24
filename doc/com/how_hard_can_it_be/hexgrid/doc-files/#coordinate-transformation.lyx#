@@ -1,0 +1,1490 @@
+#LyX 1.6.10 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+
+
+%%%%%%%%%% Start TeXmacs macros
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtexttt}[1]{{\ttfamily{#1}}}
+%%%%%%%%%% End TeXmacs macros
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Coordinate Transformations Between Square and Hex Grids
+\end_layout
+
+\begin_layout Author
+John Lusk
+\end_layout
+
+\begin_layout Standard
+In a square grid, cell coordinates are simple.
+ The origin square is 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+ (labelling the 
+\emph on
+center
+\emph default
+ of the square), the square immediately to the right of the origin cell
+ is 
+\begin_inset Formula $\left(1,0\right)$
+\end_inset
+
+.
+ the square immediately above the origin cell is 
+\begin_inset Formula $\left(0,1\right)$
+\end_inset
+
+, and so on.
+\end_layout
+
+\begin_layout Standard
+In a hex grid, we can do the same, but the axes must be tilted.
+ The origin hex is 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+ (again, labelling the center of the hex), the hex immediately to the right
+ of the origin hex is 
+\begin_inset Formula $\left(1,0\right)$
+\end_inset
+
+, the hex immediately to the "northeast" of the origin hex is 
+\begin_inset Formula $\left(0,1\right)$
+\end_inset
+
+, and so on.
+\end_layout
+
+\begin_layout Standard
+We want a mathematical transformation between the two coordinate systems,
+ to be used for the following purposes:
+\end_layout
+
+\begin_layout Itemize
+Hit-testing.
+ We want to transform a mouse click (in magenta), in square-space coordinates
+ (shown in maroon in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:hexgrid"
+
+\end_inset
+
+), to hex-space coordinates (shown in blue).
+\end_layout
+
+\begin_layout Itemize
+Rendering.
+ We want to know where to draw a particular hex, given in hex-space coordinates,
+ in square-space coordinates.
+\end_layout
+
+\begin_layout Standard
+See this paper for basic change-of-basis matrices: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.math.ucsd.edu/~nslingle/bases.pdf
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename hexgrid-coordinate-transform.svg
+	width 5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Hex Grid Elements To Be Represented In Software
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "Flo:hexgrid"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Change-of-basis matrix
+\end_layout
+
+\begin_layout Standard
+If the distance between hex centers is 1 unit (in GURPS, say, 1 yard), then
+ 
+\begin_inset Formula $r$
+\end_inset
+
+, the distance from a hex center to the center of any of its edges is
+\begin_inset Formula \begin{equation}
+r=0.5\end{equation}
+
+\end_inset
+
+And 
+\begin_inset Formula $s$
+\end_inset
+
+, which is both the distance from the hex's center to any of its vertices
+ 
+\emph on
+and
+\emph default
+ the length of a side (since a hex is composed of equilateral triangles)
+ is
+\begin_inset Formula \begin{eqnarray}
+s & = & \frac{0.5}{\cos\left(\frac{\pi}{6}\right)}\\
+ & \approx & 0.577\nonumber \end{eqnarray}
+
+\end_inset
+
+(See the maroon calculation in the lower-left corner of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:hexgrid"
+
+\end_inset
+
+.) 
+\end_layout
+
+\begin_layout Standard
+The basis vectors in what I will call 
+\begin_inset Quotes eld
+\end_inset
+
+hex space
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+)
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, in blue at the lower-left corner of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:hexgrid"
+
+\end_inset
+
+, are given (in terms of the traditional Cartesian space 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+) as
+\begin_inset Formula \[
+\left(1,0\right)\]
+
+\end_inset
+
+and
+\begin_inset Formula \begin{eqnarray*}
+\left(\cos\left(\frac{\pi}{3}\right),\sin\left(\frac{\pi}{3}\right)\right) & = & \left(\frac{1}{2},\frac{\sqrt{3}}{2}\right)\\
+ & \approx & \left(0.5,0.866\right)\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We write this as a matrix and multiply it by a vector in 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+ to get a vector in 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+:
+\begin_inset Formula \begin{eqnarray}
+M & = & \left[\begin{array}{cc}
+1 & \frac{1}{2}\\
+0 & \frac{\sqrt{3}}{2}\end{array}\right]\\
+\vec{x}_{\mathbb{R}^{2}} & = & M\vec{x}_{\mathbb{H}^{2}}\nonumber \end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As an example, we transform the base vectors, given in 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+, into 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+, and we see that we get the 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ versions we worked out above:
+\begin_inset Formula \begin{eqnarray*}
+\left[\begin{array}{c}
+1\\
+0\end{array}\right] & = & M\left[\begin{array}{c}
+1\\
+0\end{array}\right]\\
+\left[\begin{array}{c}
+\frac{1}{2}\\
+\frac{\sqrt{3}}{2}\end{array}\right] & = & M\left[\begin{array}{c}
+0\\
+1\end{array}\right]\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inverting the matrix (see 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://mathworld.wolfram.com/MatrixInverse.html"
+target "http://mathworld.wolfram.com/MatrixInverse.html"
+
+\end_inset
+
+) should get us a matrix capable of performing the opposite transformation
+ (from 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ to 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+):
+\begin_inset Formula \begin{equation}
+M^{-1}=\left[\begin{array}{cc}
+1 & \frac{-1}{\sqrt{3}}\\
+0 & \frac{2}{\sqrt{3}}\end{array}\right]\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Hit-testing
+\end_layout
+
+\begin_layout Standard
+The magenta point in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:hexgrid"
+
+\end_inset
+
+ represents a mouse-click, 
+\begin_inset Formula $\vec{m}_{\mathbb{R}^{2}}$
+\end_inset
+
+, whose coordinates arrive to us in 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+.
+ Our objective is to figure out which hex this corresponds to, without a
+ lot of trigonometry and conditional logic dependent on edge slopes and
+ x-y coordinates.
+ We transform 
+\begin_inset Formula $\vec{m}_{\mathbb{R}^{2}}$
+\end_inset
+
+ to 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+ by multiplying by 
+\begin_inset Formula $M^{-1}$
+\end_inset
+
+:
+\begin_inset Formula \[
+\vec{m}_{\mathbb{H}^{2}}=M^{-1}\vec{m}_{\mathbb{R}^{2}}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then round each coordinate of 
+\begin_inset Formula $\vec{m}_{\mathbb{H}^{2}}$
+\end_inset
+
+ both up and down to give four candidate 
+\begin_inset Quotes eld
+\end_inset
+
+closest hex centers
+\begin_inset Quotes erd
+\end_inset
+
+' (using 
+\begin_inset Formula $\vec{h}$
+\end_inset
+
+ to represent 
+\begin_inset Formula $\vec{m}_{\mathbb{H}^{2}}$
+\end_inset
+
+, 
+\begin_inset Formula $u$
+\end_inset
+
+ to represent the first basis vector of 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $v$
+\end_inset
+
+ to represent the second basis vector of 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+, to simplify the notation):
+\begin_inset Formula \begin{eqnarray*}
+\left(p_{1}\right)_{\mathbb{H}^{2}} & = & \left(\left\lfloor h_{u}\right\rfloor ,\left\lfloor h_{v}\right\rfloor \right)\\
+\left(p_{2}\right)_{\mathbb{H}^{2}} & = & \left(\left\lceil h_{u}\right\rceil ,\left\lceil h_{v}\right\rceil \right)\\
+\left(p_{3}\right)_{\mathbb{H}^{2}} & = & \left(\left\lfloor h_{u}\right\rfloor ,\left\lceil h_{v}\right\rceil \right)\\
+\left(p_{4}\right)_{\mathbb{H}^{2}} & = & \left(\left\lceil h_{u}\right\rceil ,\left\lfloor h_{v}\right\rfloor \right)\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then multiply each of the four hex-center points by 
+\begin_inset Formula $M$
+\end_inset
+
+, to transform them back to 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ (I'm not sure this is necessary -- will Pythagoras work in 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+?), and use Pythagoras to measure the square of the distance of the mouse-click
+ point to each of the four hex centers.
+ For the first point, 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+, in 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+:
+\begin_inset Formula \begin{eqnarray*}
+\left(\vec{p}_{1}\right)_{\mathbb{R}^{2}} & = & M\cdot\left(\vec{p}_{1}\right)_{\mathbb{H}^{2}}\\
+r_{1} & = & \left|\vec{m}_{\mathbb{R}^{2}}-\left(\vec{p}_{1}\right)_{\mathbb{R}^{2}}\right|\end{eqnarray*}
+
+\end_inset
+
+And so on.
+ Of the 
+\begin_inset Formula $r_{1}\ldots r_{4}$
+\end_inset
+
+, the smallest one corresponds to the closest hex center.
+ (Note that in the software, we don't need to pay the cost of square root.
+ Since we're just interested in the smallest value, we can use the square
+ of the distance, since that requires fewer compute cycles.)
+\end_layout
+
+\begin_layout Section
+Some values
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray*}
+\frac{1}{2\cos\left(\frac{\pi}{6}\right)} & = & \frac{1}{\sqrt{3}}\\
+ & \approx & 0.577\\
+\frac{1}{4\cos\left(\frac{\pi}{6}\right)} & \approx & 0.289\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Origin at top left
+\end_layout
+
+\begin_layout Standard
+Most computer graphics systems seem to have their origins at the top left
+ corner of the window, with increasing 
+\begin_inset Formula $y$
+\end_inset
+
+ values appearing lower on the screen.
+ (See the axes drawn in the top left corner of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:hexgrid"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ axes are 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+, while 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+ axes are 
+\begin_inset Formula $u$
+\end_inset
+
+ and 
+\begin_inset Formula $v$
+\end_inset
+
+.) I don't think this really changes anything, since we'll be dealing with
+ mouse clicks and path-finding, so I'm not going to worry about it in my
+ code.
+ One thing I may need to take into account is icon bitmap orientation, when
+ placed on the screen.
+ I may need to reverse 
+\begin_inset Quotes eld
+\end_inset
+
+up
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+down
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+clockwise
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+counterclockwise
+\begin_inset Quotes erd
+\end_inset
+
+ in cases like that.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename hexgrid-edges-and-vertex-values.svg
+	width 5in
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Hex Grid Vertexes and Edges
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "Flo:vertexesAndEdges"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset Quotes eld
+\end_inset
+
+Winged edge
+\begin_inset Quotes erd
+\end_inset
+
+ data structure
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Quotes eld
+\end_inset
+
+winged edge
+\begin_inset Quotes erd
+\end_inset
+
+ data structure is illustrated in the top right corner of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:vertexesAndEdges"
+
+\end_inset
+
+.
+ Pick any edge (say, the black one).
+ The two vertices are 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+.
+ Travelling from 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ to 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+, face 
+\begin_inset Formula $f_{0}$
+\end_inset
+
+ is on the left, while face 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+ is on the right.
+ Considering vertex 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+, the 
+\begin_inset Quotes eld
+\end_inset
+
+more counterclockwise
+\begin_inset Quotes erd
+\end_inset
+
+ (farther in the counterclockwise direction from 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+) neighboring edge is 
+\begin_inset Formula $e_{i}^{+}$
+\end_inset
+
+, and the 
+\begin_inset Quotes eld
+\end_inset
+
+less counterclockwise
+\begin_inset Quotes erd
+\end_inset
+
+ edge is 
+\begin_inset Formula $e_{i}^{-}$
+\end_inset
+
+.
+ Each face (hex) points to an arbitrary edge bordering it, and each vertex
+ points to arbitrary incident edge.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Edge {
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vertex vStart, vEnd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Face   fLeft, fRight;
+\end_layout
+
+\begin_layout Plain Layout
+
+	Edge   e0ccw, e0cw,	// ccw = +, cw = -
+\end_layout
+
+\begin_layout Plain Layout
+
+	       e1ccw, e1cw;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A complete circuit around a hex (for example) is taken by traversing the
+ 
+\family typewriter
+ccw
+\family default
+ edges six times.
+ You'll have to figure out whether the current vertex is 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ or 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ whenever you enter a new edge, but that shouldn't be hard.
+\end_layout
+
+\begin_layout Standard
+Each face (hex) will have attributes such as background and foreground colors,
+ icon (e.g., game piece).
+ If rivers flow along edges, then the edge will have a 
+\begin_inset Quotes eld
+\end_inset
+
+river
+\begin_inset Quotes erd
+\end_inset
+
+ attribute (e.g., a long, thin icon to be laid on top of the edge).
+ (Not yet sure how to easily do hit-testing against edges and vertices.)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename hex-edge-order.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Hex-Edge Rendering
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "Flo:hexEdgeRendering"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Data Structure Set-Up and Initial Rendering
+\end_layout
+
+\begin_layout Subsection
+Hex numbering in 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Origin hex is 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Rightmost hex of bottom row is 
+\begin_inset Formula $\left(\mathtt{numHorizHexes},0\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Leftmost hex of next row up (row 1) is 
+\begin_inset Formula $\left(0,1\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Rightmost hex of row 1 is 
+\begin_inset Formula $\left(\mathtt{numHorizHexes},1\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Leftmost hex of row 2 is 
+\begin_inset Formula $\left(-1,2\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Rightmost hex of row 2 is 
+\begin_inset Formula $\left(\mathtt{numHorizHexes}-1,2\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Leftmost hex of row 3 is 
+\begin_inset Formula $\left(-1,3\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Rightmost hex of row 3 is 
+\begin_inset Formula $\left(\mathtt{numHorizHexes}-1,3\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Leftmost hexes of rows 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $i+1$
+\end_inset
+
+, where 
+\begin_inset Formula $i\bmod2=0$
+\end_inset
+
+, are 
+\begin_inset Formula $\left(-\frac{i}{2},i\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\left(-\frac{i}{2},i+1\right)$
+\end_inset
+
+.
+ Rightmost hexes are 
+\begin_inset Formula $\left(\mathtt{numHorizHexes}-\frac{i}{2},i\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\left(\mathtt{numHorizHexes}-\frac{i}{2},i+1\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Define
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $u_{\mathrm{min}}$
+\end_inset
+
+, 
+\begin_inset Formula $u_{\mathrm{\mathrm{max}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula \begin{eqnarray*}
+u_{\mathrm{min}} & = & -\frac{i}{2}\\
+u_{\mathrm{max}} & = & \mathtt{numHorizHexes}-\frac{i}{2}\end{eqnarray*}
+
+\end_inset
+
+ for rows 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $i+1$
+\end_inset
+
+, where 
+\begin_inset Formula $i\bmod2=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Set-Up
+\end_layout
+
+\begin_layout Standard
+Hex 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+ (in 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+) is initialized with all six of its edges, starting with the one to the
+ direct 
+\begin_inset Quotes eld
+\end_inset
+
+east
+\begin_inset Quotes erd
+\end_inset
+
+ and proceeding clockwise.
+ 
+\end_layout
+
+\begin_layout Standard
+Vertex 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ of the first edge is the lower of the two vertices (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:vertexesAndEdges"
+
+\end_inset
+
+), 
+\begin_inset Formula $\left(\frac{1}{2},\frac{-1}{4\cos\left(\frac{\pi}{6}\right)}\right)=\left(0.5,-0.289\right)$
+\end_inset
+
+ (in 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+).
+ We initialize the first three edges (shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Flo:hexEdgeRendering"
+
+\end_inset
+
+ in green), then the left edge (gray, with vertex 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ being the lower vertex of that edge, as if it were the eastern edge of
+ a hex to the west), then the bottom two edges (also gray).
+ Note that all three gray edges run 
+\begin_inset Quotes eld
+\end_inset
+
+backwards
+\begin_inset Quotes erd
+\end_inset
+
+, meaning, as one traverses the edges of the hex counterclockwise, one encounter
+s vertex 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ of edge before 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+.
+ This is the same for all hexes, due to the fact that a hex shares edges
+ with its neighbors, and if they were all spinning counterclockwise, they
+ would 
+\begin_inset Quotes eld
+\end_inset
+
+grind
+\begin_inset Quotes erd
+\end_inset
+
+ against one another.
+\end_layout
+
+\begin_layout Standard
+Then we proceed to the next hex, 
+\begin_inset Formula $\left(1,0\right)$
+\end_inset
+
+ in 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+, beginning with same edge of that hex, the 
+\begin_inset Quotes eld
+\end_inset
+
+eastern
+\begin_inset Quotes erd
+\end_inset
+
+ vertical edge, and proceeding counterclockwise through the three cyan edges.
+ The last cyan edge links to the first edge of hex 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+.
+ Then, the bottom two edges, as for hex 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Having finished the first row, we proceed to the second row.
+ Hex 
+\begin_inset Formula $\left(0,1\right)$
+\end_inset
+
+ in 
+\begin_inset Formula $\mathbb{H}^{2}$
+\end_inset
+
+ has its red edges created as usual.
+ Then, its left (western, gray) edge is created in the same way as hex 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+'s.
+ The southwestern edge (green) is the second in hex 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+'s linked list of edges (proceeding clockwise), and the southeastern edge
+ (cyan) is the third in hex 
+\begin_inset Formula $\left(1,0\right)$
+\end_inset
+
+'s list of edges.
+\end_layout
+
+\begin_layout Standard
+Hex 
+\begin_inset Formula $\left(1,1\right)$
+\end_inset
+
+ is the first of the 
+\begin_inset Quotes eld
+\end_inset
+
+normal
+\begin_inset Quotes erd
+\end_inset
+
+ hexes, no gray edges.
+ The orange edges are initialized in the usual order, the red (western)
+ edge is hex 
+\begin_inset Formula $\left(0,1\right)$
+\end_inset
+
+'s first edge, the cyan (southwestern) edge is hex 
+\begin_inset Formula $\left(1,0\right)$
+\end_inset
+
+'s second edge, and the blue (southeastern) edge is hex 
+\begin_inset Formula $\left(2,0\right)$
+\end_inset
+
+'s third edge.
+\end_layout
+
+\begin_layout Standard
+At the end of the row, hex 
+\begin_inset Formula $\left(\mathtt{numHorizHexes},1\right)$
+\end_inset
+
+'s southeastern edge (gray) must be created, running 
+\begin_inset Quotes eld
+\end_inset
+
+backwards
+\begin_inset Quotes erd
+\end_inset
+
+, as usual.
+\end_layout
+
+\begin_layout Standard
+So, for each hex 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+, the first three edges are instantiated, but the next three edges are:
+\end_layout
+
+\begin_layout Itemize
+Western edge: hex 
+\begin_inset Formula $\left(u-1,v\right)$
+\end_inset
+
+'s first edge (unless 
+\begin_inset Formula $u=u_{\mathrm{min}}$
+\end_inset
+
+, in which case we instantiate a new edge running backwards);
+\end_layout
+
+\begin_layout Itemize
+Southwestern edge: hex 
+\begin_inset Formula $\left(u,v-1\right)$
+\end_inset
+
+'s second edge (unless 
+\begin_inset Formula $v=0$
+\end_inset
+
+ 
+\emph on
+or 
+\emph default
+(
+\begin_inset Formula $u=u_{\mathrm{min}}$
+\end_inset
+
+ and 
+\begin_inset Formula $v\bmod2=0$
+\end_inset
+
+), in which case we instantiate a new edge running backwards);
+\end_layout
+
+\begin_layout Itemize
+Southeastern edge: hex 
+\begin_inset Formula $\left(u+1,v-1\right)$
+\end_inset
+
+'s third edge (unless 
+\begin_inset Formula $v=0$
+\end_inset
+
+ 
+\emph on
+or
+\emph default
+ (
+\begin_inset Formula $u=u_{\mathrm{max}}$
+\end_inset
+
+ and 
+\begin_inset Formula $v\bmod2=1$
+\end_inset
+
+), in which case we instantiate a new edge running backwards).
+\end_layout
+
+\begin_layout Subsection
+Render
+\end_layout
+
+\begin_layout Standard
+Rendering is done the same way as setting up, except that we substitute
+ the word 
+\begin_inset Quotes eld
+\end_inset
+
+draw
+\begin_inset Quotes erd
+\end_inset
+
+ whereever 
+\begin_inset Quotes eld
+\end_inset
+
+instantiate
+\begin_inset Quotes erd
+\end_inset
+
+ appears.
+ For the sake of rendering speed, we 
+\emph on
+may
+\emph default
+ want to implement the list of edges for a hex as an array rather than a
+ linked list, although this will only have beneficial effect for edge hexes
+ (for interior hexes, we simply draw three edges (first, second, third)
+ and move on to the next hex).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename hex-vertexes.png
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Hex Vertex Coordinates in 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "Flo:hexVertexCoordinatesInR2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Vertex Coordinates in 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the following discussion, 
+\begin_inset Formula $r$
+\end_inset
+
+, the distance from a hex center to the center of an edge is half the intra-hex
+ distance, and 
+\begin_inset Formula $s$
+\end_inset
+
+, the length of a hex side (and also the distance from the center of a hex
+ to a vertex), are
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $r$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula \begin{eqnarray*}
+r & = & \frac{1}{2}\\
+s & = & \frac{1}{\sqrt{3}}\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For integers 
+\begin_inset Formula $i\in\left[0,\mathtt{numHorizHexes-1}\right]$
+\end_inset
+
+, 
+\begin_inset Formula $j\in\left[0,\mathtt{numVertHexes-1}\right]$
+\end_inset
+
+, the coordinates 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ of the 
+\begin_inset Formula $i$
+\end_inset
+
+-th hex of the 
+\begin_inset Formula $j$
+\end_inset
+
+-th row are
+\begin_inset Formula \begin{eqnarray*}
+u & = & i-\left(j\bmod2\right)\frac{j}{2}\\
+v & = & j\end{eqnarray*}
+
+\end_inset
+
+and the coordinates of hex 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ are:
+\begin_inset Formula \begin{eqnarray*}
+v_{0} & = & \left(\left(\left(j\bmod2\right)+2i+1\right)r,\frac{\left(3j-1\right)s}{2}\right)\\
+v_{1} & = & \left(\left(\left(j\bmod2\right)+2i+1\right)r,\frac{\left(3j+1\right)s}{2}\right)\\
+v_{2} & = & \left(\left(\left(j\bmod2\right)+2i\right)r,\frac{\left(3j+2\right)s}{2}\right)\\
+v_{3} & = & \left(\left(\left(j\bmod2\right)+2i-1\right)r,\frac{\left(3j+1\right)s}{2}\right)\\
+v_{4} & = & \left(\left(\left(j\bmod2\right)+2i-1\right)r,\frac{\left(3j-1\right)s}{2}\right)\\
+v_{5} & = & \left(\left(\left(j\bmod2\right)+2i\right)r,\frac{\left(3j-2\right)s}{2}\right)\end{eqnarray*}
+
+\end_inset
+
+For most hexes, only 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $v_{2}$
+\end_inset
+
+ need to be calculated.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\emph on
+(old, obsolete text:)
+\end_layout
+
+\begin_layout Plain Layout
+For integers 
+\begin_inset Formula $u\in\left[0,\mathrm{\mathtt{numHorizHexes}}-1\right]$
+\end_inset
+
+, 
+\begin_inset Formula $v\in\left[0,\mathtt{numVertHexes}-1\right]$
+\end_inset
+
+, when 
+\begin_inset Formula $v\bmod2=0$
+\end_inset
+
+, 
+\begin_inset Formula \begin{eqnarray*}
+v_{0} & = & \left(\frac{1}{2}+u-\frac{v}{2},-\frac{1}{2}s+2vs\right)\\
+ & = & \left(\frac{1}{2}+u-\frac{v}{2},\frac{s\left(4v-1\right)}{2}\right)\\
+v_{1} & = & \left(\frac{1}{2}+u-\frac{v}{2},\frac{1}{2}s+2vs\right)\\
+ & = & \left(\frac{1}{2}+u-\frac{v}{2},\frac{s\left(4v+1\right)}{2}\right)\\
+v_{2} & = & \left(u-\frac{v}{2},s+\frac{3s}{2}\right)\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
