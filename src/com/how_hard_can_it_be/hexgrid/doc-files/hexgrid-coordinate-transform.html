@@ -1,0 +1,967 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+ <HEAD>
+  <TITLE>hexgrid-coordinate-transform</TITLE>
+  <META NAME="generator" CONTENT="wxMaxima">
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+  <STYLE TYPE="text/css">
+body {
+  font-family: Courier New;
+  background-color: rgb(255,255,255);
+}
+.input {
+  color: rgb(0,0,255);
+}
+.comment {
+  font-family: Trebuchet MS;
+  color: rgb(0,0,0);
+  background-color: rgb(191,216,216);
+  padding: 2mm;
+}
+.image {
+  font-family: Trebuchet MS;
+  color: rgb(0,0,0);
+  padding: 2mm;
+}
+.section {
+  font-family: Trebuchet MS;
+  color: rgb(0,0,0);
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5em;
+  padding: 2mm;
+}
+.subsect {
+  font-family: Trebuchet MS;
+  color: rgb(0,0,0);
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 2mm;
+}
+.title {
+  font-family: Trebuchet MS;
+  color: rgb(0,0,0);
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 2em;
+  padding: 2mm;
+}
+.prompt {
+  color: rgb(255,0,0);
+}
+table {
+  border: 0px;
+}
+td {
+  vertical-align: top;
+  padding: 1mm;
+}
+  </STYLE>
+ </HEAD>
+ <BODY>
+
+<!---------------------------------------------------------->
+<!--          Created with wxMaxima version 11.04.0         -->
+<!---------------------------------------------------------->
+
+
+<!-- Title cell -->
+
+
+<P CLASS="title">
+Coordinate Transformations Between Square and Hex Grids
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+In a square grid, cell coordinates are simple.  The origin square is (0,0), the square immediately to the right of the origin cell<BR>
+is (1,0), the square immediately above the origin cell is (0,1), and so on.<BR>
+<BR>
+In a hex grid, we can do the same, but the axes must be tilted.  The origin hex is (0,0), the hex immediately to the right<BR>
+of the origin hex is (1,0), the hex immediately to the "northeast" of the origin hex is (0,1), and so on.<BR>
+<BR>
+We want a mathematical transformation between the two coordinate systems, to be used for the following purposes:<BR>
+<BR>
+* Hit-testing.  We want to transform a mouse click (in magenta), in square-space coordinates (shown in maroon), to hex-space coordinates<BR>
+(shown in blue).<BR>
+<BR>
+* Rendering.  We want to know where to draw a particular hex, given in hex-space coordinates, in square-space coordinates.<BR>
+<BR>
+See this paper for basic change-of-basis matrices: http://www.math.ucsd.edu/~nslingle/bases.pdf
+</P>
+
+
+<!-- Image cell -->
+
+
+<P CLASS="image">
+Figure 1: C:\Users\John\workspace\HexGrid2\src\com\how_hard_can_it_be\hexgrid\doc-files\hexgrid-coordinate-transform.png
+<BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_0.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Hex size:  centers are 1 unit (yard, for GURPS) apart.  Distance from center of hex to center of flat edge is 0.5.<BR>
+Hex radius r, distance from hex center to vertex (same as length of side, s) is given below.
+</P>
+
+
+<!-- Section cell -->
+
+
+<P CLASS="section">
+ 1 Change of basis matrix
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i5) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+r: .5/cos(%pi/6);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_1.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i6) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_2.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+("%" refers to the previous result.  ",numer" means we want it numerically.)
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i7) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+cos(%pi/3);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_3.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i8) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+sin(%pi/3);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_4.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i9) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_5.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Matrix of column vectors (sadly, expressed in Maxima by rows). Each column is a base vector of hex-space expressed in<BR>
+square-space coordinates.
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i10) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M: matrix([1,cos(%pi/3)],[0,sin(%pi/3)]);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_6.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Point in hex-space (denoted w/subscript 'u' here):
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i11) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+p1_u:[1,0];
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_7.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Transformed by matrix M into square-space coordinates:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i12) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M . p1_u;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_8.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Horizontal travel is the same between the two coordinate systems:  Moving 1 unit to the right in both systems results<BR>
+in the same real motion.<BR>
+<BR>
+Travel "vertically" in hex-space ("northeast" in the more tradition square-space) is a little more complex.  Define a point:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i13) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+p2_u:[0,1];
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_9.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Transform to square-space coordinates:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i14) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+p2_x: M . p2_u;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_10.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Inverting the matrix should get us a matrix capable of performing the opposite transformation<BR>
+(from square-space to hex-space):
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i15) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M_inv: invert(M);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_11.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Demonstration that the two operations (transform from one space to the other and back again) are the identity<BR>
+(which you would expect from the inverted matrix):
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i16) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M_inv . M;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_12.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i17) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M . M_inv;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_13.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Transforming the "northeast" hex back to hex-space coordinates:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i18) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M_inv . p2_x;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_14.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Pick a point between two hexes (horizontally) and find out what its square-space coordinates are:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i19) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M . [1.5,3];
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_15.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i20) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_16.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i21) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+3*.866;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_17.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Pick two hexes adjacent in a "northwest-southeast" direction, and transform them to square-space coordinates:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i22) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+u13: M . [1,3];<BR>
+u22: M . [2,2];
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_18.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i24) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M . [1,3],numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_19.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i25) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M . [2,2],numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_20.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Average the x- and y- coordinates (in square-space) to specify a point between u13 and u22:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i26) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+u_mid_13_22: [(5/2+3)/2,(3^(3/2)/2+sqrt(3))/2];
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_21.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i27) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_22.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Transform from square-space to hex-space:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i28) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M_inv . u_mid_13_22;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_23.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Looks insane.  Should be simpler, somehow.  What do all those radicals evaluate to?
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i29) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_24.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Ah, much better.  And it makes sense.
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i30) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+r * sin(%pi/6);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_25.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i31) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_26.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+square-space coordinates of vertex between 3 hexes:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i32) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+mid3_x: u22+[0,r];
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_27.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+(These column vectors appear in Maxima as matrices having one column and two rows, which fact will be used<BR>
+in indexing mid3_x below.)
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i33) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_28.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+hex-space coordinates of same vertex:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i34) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+M_inv . mid3_x;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_29.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i35) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+ratsimp(%);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_30.png">
+</P>
+
+
+<!-- Section cell -->
+
+
+<P CLASS="section">
+ 2 Hit-testing
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Mouse click a hair to the left (in square-space) of the above vertex:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i36) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+click_x:[mid3_x[1,1]-0.05, mid3_x[2,1]];<BR>
+click_u: M_inv . click_x;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_31.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i38) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+%,numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_32.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+So, if we pick the four corners of a quadrilateral containing the point, in hex-space, we get the following:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i39) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+q1_u: [1,2];<BR>
+q2_u: [2,2];<BR>
+q3_u: [2,3];<BR>
+q4_u: [1,3];
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_33.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Transforming to square-space so we can use Pythagoras to pick the closest center.  Picking the closest center should work<BR>
+because the hexes are Voronoi regions (as are squares, but we don't use this algorithm in square-space because it's easier to<BR>
+more directly find the containing square).  The containing hex will always be one of the four hexes determined above.
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i43) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+q1_x: M . q1_u;<BR>
+q2_x: M . q2_u;<BR>
+q3_x: M . q3_u;<BR>
+q4_x: M . q4_u;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_34.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+So, the square of the distance from the click point to each of the 'q' points, in square-space:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i47) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+r1: click_x - q1_x, numer;<BR>
+r2: click_x - q2_x, numer;<BR>
+r3: click_x - q3_x, numer;<BR>
+r4: click_x - q4_x, numer;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_35.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Magnitude^2 of a column vector is defined below.  We only need the square because we're just comparing similar numbers,<BR>
+and we don't need to pay the cost of computing a square root.
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i51) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+mag2covect(v) := v[1,1]^2 + v[2,1]^2;
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_36.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Hello, Pythagoras:
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i52) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+mag2covect(matrix([3],[4]));
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_37.png">
+</P>
+
+
+<!-- Code cell -->
+
+
+<P><TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+(%i53) 
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+mag2covect(r1);<BR>
+mag2covect(r2);<BR>
+mag2covect(r3);<BR>
+mag2covect(r4);
+  </SPAN></TD>
+</TR></TABLE>
+  <BR>
+  <IMG ALT="Result" SRC="hexgrid-coordinate-transform_img/hexgrid-coordinate-transform_38.png">
+</P>
+
+
+<!-- Text cell -->
+
+
+<P CLASS="comment">
+Looks like q4 wins, as shown in the figure.
+</P>
+
+ <HR>
+ <SMALL> Created with <A HREF="http://wxmaxima.sourceforge.net/">wxMaxima</A>.</SMALL>
+
+ </BODY>
+</HTML>
