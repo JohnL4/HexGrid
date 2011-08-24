@@ -3,6 +3,13 @@ package com.how_hard_can_it_be.hexgrid;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * A grid of hexes.  This grid is intended to be immutable once set up, but tokens can be placed on it and moved around.
+ * 
+ * @see <a href="doc-files/coordinate-transformation.pdf">doc-files/coordinate-transformation.pdf</a>
+ * @author John.Lusk@how-hard-can-it-be.com
+ *
+ */
 public class HexGrid
 {
    /**
