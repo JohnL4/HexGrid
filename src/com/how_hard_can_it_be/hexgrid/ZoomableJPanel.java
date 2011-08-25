@@ -116,12 +116,18 @@ public abstract class ZoomableJPanel extends JPanel
 //      AffineTransform newXform = AffineTransform.getTranslateInstance( -myRectangle.x, -myRectangle.y);
 //      newXform.scale( getZoomFactor(), getZoomFactor());
 //      g2.setTransform( newXform);
+
+      // 'Nuther attempt:
+      AffineTransform xform = AffineTransform.getScaleInstance( getZoomFactor(), getZoomFactor());
+      xform.translate( -getRectangle().x, -getRectangle().y);
+      myLastXform = xform;
       
       // Whatever the transform was initially, scale it up to the current zoom factor and translate it to expose the
       // points outside of the first quadrant that we would normally never see.
-      g2.scale( getZoomFactor(), getZoomFactor());
-      g2.translate( -myRectangle.x, -myRectangle.y);
-      myLastXform = g2.getTransform();
+//      g2.scale( getZoomFactor(), getZoomFactor());
+//      g2.translate( -myRectangle.x, -myRectangle.y);
+      g2.transform( xform);   // TODO: explain that transforms are applied in a last-in, first-out order.  Transform composition is explained in Graphics2D.transform() and G2D.translate().
+      // myLastXform = g2.getTransform();
       
       paintZoomableContents( g2);
    
