@@ -12,6 +12,6 @@ src/com/how_hard_can_it_be/hexgrid/doc-files/coordinate-transformation.pdf. Note
 that this is not in the "doc" directory tree.  "doc" is updated
 occasionally, but "src" will contain the latest version.
 
-I have added a dependency on the JAMA matrix package.  Get it at
-http://math.nist.gov/javanumerics/jama/
+I have added a dependency on the JAMA matrix package (version 1.0.2).
+Get it at http://math.nist.gov/javanumerics/jama/
 
