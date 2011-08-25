@@ -4,8 +4,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 public class HexGridCanvas extends ZoomableJPanel
@@ -22,6 +25,32 @@ public class HexGridCanvas extends ZoomableJPanel
 //      myNumVertHexes = aNumVertHexes;
    }
    
+   public HexGrid getHexGrid()
+   {
+      return myHexGrid;
+   }
+   
+   /**
+    * Paints the given hex indexed by aHexIx the given color.
+    * @param aHexIx
+    */
+   public void paintHex( Point aHexIx, Color aColor)
+   {
+      Hex hex = myHexGrid.getHexes()[aHexIx.x][aHexIx.y];
+      hex.setBackgroundColor( aColor);
+      Rectangle2D.Double hexBox = hex.getBounds2D();
+      Point2D.Double lower = new Point2D.Double( hexBox.x, hexBox.y);
+      Point2D.Double upper = new Point2D.Double( hexBox.x + hexBox.width, hexBox.y + hexBox.height);
+      Point2D.Double[] xformedPts = new Point2D.Double[2];
+      getLastTransform().transform( new Point2D.Double[] {lower, upper}, 0, xformedPts, 0, 2);
+      int x, y, width, height;
+      x = (int) Math.floor( xformedPts[0].x);
+      y = (int) Math.floor( xformedPts[0].y);
+      width = (int) (Math.ceil(xformedPts[1].x) - x);
+      height = (int) (Math.ceil(xformedPts[1].y) - y);
+      repaint(x, y, width, height);
+   }
+      
    /**
     * Returns initial zoom factor to make hex grid fit in initial window reasonably.
     * @param aHexArray
@@ -72,6 +101,32 @@ public class HexGridCanvas extends ZoomableJPanel
             {
                Edge e = hex.getEdge(k);
                g2.draw( new Line2D.Double( e.getVertex0(), e.getVertex1()));
+            }
+            Color hexColor = hex.getBackgroundColor();
+            if (hexColor != null)
+            {
+               Path2D.Double hexPath = new Path2D.Double();
+               Edge e = hex.getEdge(0);
+               Point2D.Double v = e.getVertex0();
+               hexPath.moveTo(v.x, v.y);
+               v = e.getVertex1();
+               hexPath.lineTo( v.x, v.y);
+               e = hex.getEdge( 1);
+               v = e.getVertex1();
+               hexPath.lineTo( v.x, v.y);
+               e = hex.getEdge( 2);
+               v = e.getVertex1();
+               hexPath.lineTo( v.x, v.y);
+
+               e = hex.getEdge( 3);
+               v = e.getVertex0();  // Runs backwards
+               hexPath.lineTo( v.x, v.y);
+               e = hex.getEdge( 4);
+               v = e.getVertex0();
+               hexPath.lineTo( v.x, v.y);
+               hexPath.closePath();
+               g2.setPaint( hexColor);
+               g2.fill( hexPath);
             }
          }
       }

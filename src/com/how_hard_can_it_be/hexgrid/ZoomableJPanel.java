@@ -80,10 +80,19 @@ public abstract class ZoomableJPanel extends JPanel
    }
 
    /**
+    * Returns reference to last transform used to paint this panel.  Do not modify it.
+    * @return
+    */
+   public AffineTransform getLastTransform()
+   {
+      return myLastXform;
+   }
+   
+   /**
     * The bounding rectangle of the figure this zoomable panel will display.  Return value should not be modified.
     * @return
     */
-   public Rectangle2D.Double getRectangle()
+   protected Rectangle2D.Double getRectangle()
    {
       if (myRectangle == null)
          myRectangle = new Rectangle2D.Double(0, 0, INITIAL_WIDTH, INITIAL_HEIGHT);
@@ -112,7 +121,8 @@ public abstract class ZoomableJPanel extends JPanel
       // points outside of the first quadrant that we would normally never see.
       g2.scale( getZoomFactor(), getZoomFactor());
       g2.translate( -myRectangle.x, -myRectangle.y);
-
+      myLastXform = g2.getTransform();
+      
       paintZoomableContents( g2);
    
       g2.setTransform( prevXform);
@@ -124,4 +134,8 @@ public abstract class ZoomableJPanel extends JPanel
    private double myZoomFactor = 1.0f;
    private Rectangle2D.Double myRectangle;
 
+   /**
+    * Last (most-recent) transform used to paint.
+    */
+   private AffineTransform myLastXform;
 }

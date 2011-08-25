@@ -1,6 +1,9 @@
 package com.how_hard_can_it_be.hexgrid;
 
+import java.awt.Color;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 import java.text.DecimalFormat;
 
 /**
@@ -118,6 +121,35 @@ public class Hex
    }
    
    /**
+    * Sets the background color of this hex.  Color may be null, in which case hex will have no background.
+    * @param aColor
+    */
+   public void setBackgroundColor( Color aColor)
+   {
+      myBackgroundColor = aColor;
+   }
+   
+   public Color getBackgroundColor()
+   {
+      return myBackgroundColor;
+   }
+
+   /**
+    * Returns the bounding box containing this hex.
+    * @return
+    */
+   public Rectangle2D.Double getBounds2D()
+   {
+      double minX, minY, maxX, maxY;
+      maxX = getEdge(0).getVertex0().x;
+      maxY = getEdge(2).getVertex0().y;
+      minX = getEdge(2).getVertex1().x;
+      minY = getEdge(4).getVertex0().y;
+      Rectangle2D.Double retval = new Rectangle2D.Double(minX, minY, (maxX - minX), (maxY - minY));
+      return retval;
+   }
+
+   /**
     * For debugging.
     */
    public String toString()
@@ -191,4 +223,6 @@ public class Hex
     * Index of highest known edge in {@see #myEdge}.
     */
    private int myHighestCachedEdge;
+   
+   private Color myBackgroundColor;
 }

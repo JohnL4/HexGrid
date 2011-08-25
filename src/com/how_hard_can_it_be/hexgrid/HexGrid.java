@@ -1,7 +1,12 @@
 package com.how_hard_can_it_be.hexgrid;
 
+import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+import Jama.Matrix;
 
 /**
  * A grid of hexes.  This grid is intended to be immutable once set up, but tokens can be placed on it and moved around.
@@ -23,6 +28,16 @@ public class HexGrid
       myHexes = new Hex[myNumHorizHexes][myNumVertHexes];
       myHexRadius = aHexDiameter / 2;
       myHexSide = myHexRadius / Math.cos( Math.PI/6);
+      
+      
+      myH2toR2 = new Matrix(new double[][] {{1.0, 0.5}, {0.0, Math.sqrt( 3.0)/2.0}});
+      myR2toH2 = myH2toR2.inverse();
+      
+//      System.out.println( "h2toR2:");
+//      myH2toR2.print( new DecimalFormat( "##.####"), 8);
+//      System.out.println( "r2toH2:");
+//      myR2toH2.print( new DecimalFormat( "##.####"), 8);
+      
       setupHexes();
    }
 
@@ -87,6 +102,53 @@ public class HexGrid
    public int getNumVertHexes()
    {
       return myNumVertHexes;
+   }
+   
+   /**
+    * Returns the (i,j) index into {@see #myHexes} of the hex containing the given test point.  The (i,j) index 
+    * indicates the i-th hex in the j-th row, so it's a little like an (x,y) coordinate.
+    * <strong>NOTE</strong> that the returned index may, in fact, be invalid for indexing into {@see #myHexes},
+    * which would indicate that the test point is not inside any hex.
+    * @param aTestPoint
+    * @return
+    */
+   public Point hexContaining( Point2D.Double aTestPoint)
+   {
+      Matrix mat_H2 = myR2toH2.times( new Matrix( new double[] { aTestPoint.x, aTestPoint.y}, 2));
+      Point2D.Double pt_H2 = new Point2D.Double( mat_H2.get(0,0), mat_H2.get(1,0));
+      Point candidatePt_H2[] = new Point[]
+            {
+               new Point( (int) Math.floor( pt_H2.x), (int) Math.floor( pt_H2.y)),
+               new Point( (int) Math.ceil( pt_H2.x), (int) Math.ceil( pt_H2.y)),
+               new Point( (int) Math.floor( pt_H2.x), (int) Math.ceil( pt_H2.y)),
+               new Point( (int) Math.ceil( pt_H2.x), (int) Math.floor( pt_H2.y)),
+            };
+      double rsq[] = new double[4]; // r squared
+      for (int i = 0; i < 4; i++)
+      {
+         Matrix mat_R2 = myH2toR2.times(  new Matrix( new double[] {candidatePt_H2[i].x, candidatePt_H2[i].y}, 2));
+         Point2D.Double cand_R2 = new Point2D.Double( mat_R2.get( 0,0), mat_R2.get( 1,0));
+         double dx, dy;
+         dx = aTestPoint.x - cand_R2.x;
+         dy = aTestPoint.y - cand_R2.y;
+         rsq[i] = dx * dx + dy * dy;
+      }
+      int bestPtIx = 0;
+      double bestRadius = rsq[0];
+      for (int i = 1; i < 4; i++)
+      {
+         if (rsq[i] < bestRadius)
+         {
+            bestRadius = rsq[i];
+            bestPtIx = i;
+         }
+      }
+      // At this point, we have the closest hex, but we need to adjust the (u,v) coordinates to myHexes(i,j) coordinates.
+      int u = candidatePt_H2[ bestPtIx].x;
+      int v = candidatePt_H2[ bestPtIx].y;
+      Point retval = new Point( u + v/2, v); // integer division ==> truncation, which is what we want.
+
+      return retval;
    }
    
    private void setupHexes()
@@ -216,4 +278,10 @@ public class HexGrid
     */
    private double myHexSide;
    private Hex[][] myHexes;
+   
+   /**
+    * Translate from hex space (H2) to Cartesian space (R2) and back again.
+    */
+   private Matrix myH2toR2, myR2toH2;  
+
 }
