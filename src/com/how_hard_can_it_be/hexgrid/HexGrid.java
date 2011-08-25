@@ -1,6 +1,8 @@
 package com.how_hard_can_it_be.hexgrid;
 
 import java.awt.Point;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.text.DecimalFormat;
@@ -32,6 +34,17 @@ public class HexGrid
       
       myH2toR2 = new Matrix(new double[][] {{1.0, 0.5}, {0.0, Math.sqrt( 3.0)/2.0}});
       myR2toH2 = myH2toR2.inverse();
+      
+      myH2toR2Xform = new AffineTransform( 1, 0, 0.5, Math.sqrt(3.0)/2.0, 0, 0);
+      try
+      {
+         myR2toH2Xform = myH2toR2Xform.createInverse();
+      }
+      catch (NoninvertibleTransformException exc)
+      {
+         // Should never happen (obviously).
+         exc.printStackTrace();
+      }
       
 //      System.out.println( "h2toR2:");
 //      myH2toR2.print( new DecimalFormat( "##.####"), 8);
@@ -127,6 +140,7 @@ public class HexGrid
       for (int i = 0; i < 4; i++)
       {
          Matrix mat_R2 = myH2toR2.times(  new Matrix( new double[] {candidatePt_H2[i].x, candidatePt_H2[i].y}, 2));
+         
          Point2D.Double cand_R2 = new Point2D.Double( mat_R2.get( 0,0), mat_R2.get( 1,0));
          double dx, dy;
          dx = aTestPoint.x - cand_R2.x;
@@ -284,4 +298,9 @@ public class HexGrid
     */
    private Matrix myH2toR2, myR2toH2;  
 
+   /**
+    * Change-of-basis vectors, not really graphical transforms.  AffineTransforms should be able to handle this function,
+    * though, w/out introducting a dependency on a 3rd-party library for matrix ops.
+    */
+   private AffineTransform myH2toR2Xform, myR2toH2Xform;
 }
