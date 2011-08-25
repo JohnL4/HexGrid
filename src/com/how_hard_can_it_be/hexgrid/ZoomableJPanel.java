@@ -39,7 +39,7 @@ public abstract class ZoomableJPanel extends JPanel
    public Dimension getPreferredSize()
    {
       Dimension retval;
-      Rectangle2D.Double dim = getInitialRectangle();
+      Rectangle2D.Double dim = getRectangle();
       double zf = getZoomFactor();
       retval = new Dimension(
          (int) Math.round( dim.width * zf),
@@ -80,10 +80,10 @@ public abstract class ZoomableJPanel extends JPanel
    }
 
    /**
-    * Does not clone Dimension (which is mutable).  Probably a Bad Idea to modify the mutable object this returns.
+    * The bounding rectangle of the figure this zoomable panel will display.  Return value should not be modified.
     * @return
     */
-   protected Rectangle2D.Double getInitialRectangle()
+   public Rectangle2D.Double getRectangle()
    {
       if (myRectangle == null)
          myRectangle = new Rectangle2D.Double(0, 0, INITIAL_WIDTH, INITIAL_HEIGHT);
@@ -100,12 +100,19 @@ public abstract class ZoomableJPanel extends JPanel
    
       Graphics2D g2 = (Graphics2D) aG;
    
-      AffineTransform prevXform = g2.getTransform();
+      AffineTransform prevXform = g2.getTransform();  // If you inspect this transform, it's not the identity, and I can't explain that.
       Stroke prevStroke = g2.getStroke();
-
+      
+      // Doesn't work:
+//      AffineTransform newXform = AffineTransform.getTranslateInstance( -myRectangle.x, -myRectangle.y);
+//      newXform.scale( getZoomFactor(), getZoomFactor());
+//      g2.setTransform( newXform);
+      
+      // Whatever the transform was initially, scale it up to the current zoom factor and translate it to expose the
+      // points outside of the first quadrant that we would normally never see.
       g2.scale( getZoomFactor(), getZoomFactor());
       g2.translate( -myRectangle.x, -myRectangle.y);
-   
+
       paintZoomableContents( g2);
    
       g2.setTransform( prevXform);

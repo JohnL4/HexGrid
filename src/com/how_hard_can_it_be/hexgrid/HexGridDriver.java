@@ -25,7 +25,7 @@ public class HexGridDriver
       System.out.printf( "Hex grid bounds, as vertices: (%7.4g, %7.4g), (%7.4g, %7.4g)%s",
          bounds.x, bounds.y, (bounds.x + bounds.width), (bounds.y + bounds.height),
          Const.CRLF);
-      System.out.println( hexGrid.toString());
+//      System.out.println( hexGrid.toString());
       javax.swing.SwingUtilities.invokeLater(new Runnable() {
          public void run() {
              createAndShowGui( hexGrid);
@@ -39,6 +39,7 @@ public class HexGridDriver
       topFrame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
 
       ZoomableJPanel zp = new HexGridCanvas( aHexGrid); // new GiantArrowCanvas();
+      zp.addMouseListener( new HexColoringMouseListener());
 //      ghc.setBorder( new LineBorder( Color.RED, 1));
 //      topFrame.add( gac, BorderLayout.CENTER);
       

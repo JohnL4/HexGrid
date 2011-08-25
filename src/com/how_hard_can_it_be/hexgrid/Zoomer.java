@@ -23,7 +23,7 @@ public class Zoomer implements ActionListener
    @Override
    public void actionPerformed( ActionEvent e)
    {
-      System.out.println( "Got event " + e);
+//      System.out.println( "Got event " + e);
       String actionCommand = e.getActionCommand().intern();
       if (LABEL_ZOOM_IN == actionCommand)
       {
