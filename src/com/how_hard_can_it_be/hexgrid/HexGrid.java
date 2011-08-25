@@ -5,10 +5,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
-import Jama.Matrix;
 
 /**
  * A grid of hexes.  This grid is intended to be immutable once set up, but tokens can be placed on it and moved around.
@@ -32,8 +28,8 @@ public class HexGrid
       myHexSide = myHexRadius / Math.cos( Math.PI/6);
       
       
-      myH2toR2 = new Matrix(new double[][] {{1.0, 0.5}, {0.0, Math.sqrt( 3.0)/2.0}});
-      myR2toH2 = myH2toR2.inverse();
+//      myH2toR2 = new Matrix(new double[][] {{1.0, 0.5}, {0.0, Math.sqrt( 3.0)/2.0}});
+//      myR2toH2 = myH2toR2.inverse();
       
       myH2toR2Xform = new AffineTransform( 1, 0, 0.5, Math.sqrt(3.0)/2.0, 0, 0);
       try
@@ -127,24 +123,32 @@ public class HexGrid
     */
    public Point hexContaining( Point2D.Double aTestPoint)
    {
-      Matrix mat_H2 = myR2toH2.times( new Matrix( new double[] { aTestPoint.x, aTestPoint.y}, 2));
-      Point2D.Double pt_H2 = new Point2D.Double( mat_H2.get(0,0), mat_H2.get(1,0));
+//      Matrix mat_H2 = myR2toH2.times( new Matrix( new double[] { aTestPoint.x, aTestPoint.y}, 2));
+//      Point2D.Double pt_H2 = new Point2D.Double( mat_H2.get(0,0), mat_H2.get(1,0));
+      
+      // alt: xform
+      Point2D testPt_H2 = myR2toH2Xform.transform( aTestPoint, null);
+      
       Point candidatePt_H2[] = new Point[]
             {
-               new Point( (int) Math.floor( pt_H2.x), (int) Math.floor( pt_H2.y)),
-               new Point( (int) Math.ceil( pt_H2.x), (int) Math.ceil( pt_H2.y)),
-               new Point( (int) Math.floor( pt_H2.x), (int) Math.ceil( pt_H2.y)),
-               new Point( (int) Math.ceil( pt_H2.x), (int) Math.floor( pt_H2.y)),
+               new Point( (int) Math.floor( testPt_H2.getX()), (int) Math.floor( testPt_H2.getY())),
+               new Point( (int) Math.ceil( testPt_H2.getX()), (int) Math.ceil( testPt_H2.getY())),
+               new Point( (int) Math.floor( testPt_H2.getX()), (int) Math.ceil( testPt_H2.getY())),
+               new Point( (int) Math.ceil( testPt_H2.getX()), (int) Math.floor( testPt_H2.getY())),
             };
       double rsq[] = new double[4]; // r squared
       for (int i = 0; i < 4; i++)
       {
-         Matrix mat_R2 = myH2toR2.times(  new Matrix( new double[] {candidatePt_H2[i].x, candidatePt_H2[i].y}, 2));
+//         Matrix mat_R2 = myH2toR2.times(  new Matrix( new double[] {candidatePt_H2[i].x, candidatePt_H2[i].y}, 2));
          
-         Point2D.Double cand_R2 = new Point2D.Double( mat_R2.get( 0,0), mat_R2.get( 1,0));
+         // Point2D.Double cand_R2 = new Point2D.Double( mat_R2.get( 0,0), mat_R2.get( 1,0));
+
+         // alt: xform
+         Point2D cand_R2 = myH2toR2Xform.transform( candidatePt_H2[i], null);
+         
          double dx, dy;
-         dx = aTestPoint.x - cand_R2.x;
-         dy = aTestPoint.y - cand_R2.y;
+         dx = aTestPoint.x - cand_R2.getX();
+         dy = aTestPoint.y - cand_R2.getY();
          rsq[i] = dx * dx + dy * dy;
       }
       int bestPtIx = 0;
@@ -296,7 +300,7 @@ public class HexGrid
    /**
     * Translate from hex space (H2) to Cartesian space (R2) and back again.
     */
-   private Matrix myH2toR2, myR2toH2;  
+//   private Matrix myH2toR2, myR2toH2;  
 
    /**
     * Change-of-basis vectors, not really graphical transforms.  AffineTransforms should be able to handle this function,
