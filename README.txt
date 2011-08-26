@@ -8,6 +8,4 @@ I finally got the first pass working and I wanted to commit before
 continuing work (and breaking it all).
 
 General theory is in
-src/com/how_hard_can_it_be/hexgrid/doc-files/coordinate-transformation.pdf. Note
-that this is not in the "doc" directory tree.  "doc" is updated
-occasionally, but "src" will contain the latest version.
+src/com/how_hard_can_it_be/hexgrid/doc-files/coordinate-transformation.pdf.
