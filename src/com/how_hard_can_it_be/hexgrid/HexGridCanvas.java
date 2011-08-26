@@ -14,8 +14,15 @@ import java.awt.geom.Rectangle2D;
 
 public class HexGridCanvas extends ZoomableJPanel
 {
-   private static final Color[] COLORS = { Color.RED, new Color(0, 127, 0), Color.BLUE };
-   
+   private static final Color[] FOREGROUND_COLORS = { Color.RED, new Color(0, 127, 0), Color.BLUE };
+   private static final Color[] BACKGROUND_COLORS = { new Color(0xFFCEC8), new Color(0xDCCEFF), 
+      new Color(0xFFF7C8), new Color(0xC8FFD4)};
+
+   /**
+    * How many times {@see #paintZoomableContents(Graphics2D)} has been called.
+    */
+   private static int ourPaintCount = 0;
+
    public HexGridCanvas( HexGrid aHexGrid) // Hex[][] aHexesArray, int aNumHorizHexes, int aNumVertHexes)
    {
       super( aHexGrid.getBounds(), 
@@ -92,6 +99,10 @@ public class HexGridCanvas extends ZoomableJPanel
    {
       // TODO: get clip region and only paint that.
       Rectangle clipRect = aG2.getClipBounds();
+      
+      aG2.setPaint( BACKGROUND_COLORS[ourPaintCount++ % BACKGROUND_COLORS.length]);
+      aG2.fill( clipRect);
+      
       HexGrid hg = getHexGrid();
       Point lowerLeft = hg.hexContaining( new Point2D.Double( clipRect.getMinX(), clipRect.getMinY()));
       lowerLeft.translate( -1, -1);
@@ -130,7 +141,7 @@ public class HexGridCanvas extends ZoomableJPanel
       {
          for (int i = lowerLeft.x; i <= upperRight.x; i++)
          {
-            g2.setPaint( COLORS[i % COLORS.length]);
+            g2.setPaint( FOREGROUND_COLORS[i % FOREGROUND_COLORS.length]);
             Hex hex = hexes[i][j];
             for (int k = 0; k < 6; k++)
             {
