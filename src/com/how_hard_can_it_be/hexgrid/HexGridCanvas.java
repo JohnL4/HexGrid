@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
@@ -31,24 +32,30 @@ public class HexGridCanvas extends ZoomableJPanel
    }
    
    /**
-    * Paints the given hex indexed by aHexIx the given color.
+    * Paints the given hex indexed by aHexIx the given color.  If hex indexes are out of range, does nothing.
     * @param aHexIx
     */
    public void paintHex( Point aHexIx, Color aColor)
    {
-      Hex hex = myHexGrid.getHexes()[aHexIx.x][aHexIx.y];
-      hex.setBackgroundColor( aColor);
-      Rectangle2D.Double hexBox = hex.getBounds2D();
-      Point2D.Double lower = new Point2D.Double( hexBox.x, hexBox.y);
-      Point2D.Double upper = new Point2D.Double( hexBox.x + hexBox.width, hexBox.y + hexBox.height);
-      Point2D.Double[] xformedPts = new Point2D.Double[2];
-      getLastTransform().transform( new Point2D.Double[] {lower, upper}, 0, xformedPts, 0, 2);
-      int x, y, width, height;
-      x = (int) Math.floor( xformedPts[0].x);
-      y = (int) Math.floor( xformedPts[0].y);
-      width = (int) (Math.ceil(xformedPts[1].x) - x);
-      height = (int) (Math.ceil(xformedPts[1].y) - y);
-      repaint(x, y, width, height);
+      if (0 <= aHexIx.x && aHexIx.x < myHexGrid.getNumHorizHexes()
+            && 0 <= aHexIx.y && aHexIx.y < myHexGrid.getNumVertHexes())
+      {
+         Hex hex = myHexGrid.getHexes()[ aHexIx.x][ aHexIx.y];
+         hex.setBackgroundColor( aColor);
+         Rectangle2D.Double hexBox = hex.getBounds2D();
+         Point2D.Double lower = new Point2D.Double( hexBox.x, hexBox.y);
+         Point2D.Double upper = new Point2D.Double( hexBox.x + hexBox.width,
+            hexBox.y + hexBox.height);
+         Point2D.Double[] xformedPts = new Point2D.Double[2];
+         getLastTransform().transform( new Point2D.Double[] { lower, upper },
+            0, xformedPts, 0, 2);
+         int x, y, width, height;
+         x = (int) Math.floor( xformedPts[ 0].x);
+         y = (int) Math.floor( xformedPts[ 0].y);
+         width = (int) (Math.ceil( xformedPts[ 1].x) - x);
+         height = (int) (Math.ceil( xformedPts[ 1].y) - y);
+         repaint( x, y, width, height);
+      }
    }
       
    /**
@@ -83,17 +90,45 @@ public class HexGridCanvas extends ZoomableJPanel
    @Override
    protected void paintZoomableContents( Graphics2D aG2)
    {
-      drawHexes( aG2);
+      // TODO: get clip region and only paint that.
+      Rectangle clipRect = aG2.getClipBounds();
+      HexGrid hg = getHexGrid();
+      Point lowerLeft = hg.hexContaining( new Point2D.Double( clipRect.getMinX(), clipRect.getMinY()));
+      lowerLeft.translate( -1, -1);
+      Point upperRight = hg.hexContaining( new Point2D.Double( clipRect.getMaxX(), clipRect.getMaxY()));
+      upperRight.translate( 1, 1);
+
+//      lowerLeft = new Point(0,0);
+//      upperRight = new Point(hg.getNumHorizHexes()-1, hg.getNumVertHexes()-1);
+      
+      System.out.printf( "painting, clip rect = (%7.4g, %7.4g) --> (%7.4g, %7.4g);\thex rect = (%d, %d) --> (%d, %d)%s", 
+         clipRect.getMinX(), clipRect.getMinY(), clipRect.getMaxX(), clipRect.getMaxY(),
+         lowerLeft.x, lowerLeft.y, upperRight.x, upperRight.y,
+         Const.CRLF);
+      
+      drawHexes( aG2, lowerLeft, upperRight); 
    }
 
-   private void drawHexes( Graphics2D g2)
+   /**
+    * Draws the indicated hexes.  Corner points are inclusive.  Points are indexes into hexes array.
+    * @param g2
+    * @param aLowerLeftCorner
+    * @param anUpperRightCorner
+    */
+   private void drawHexes( Graphics2D g2, Point aLowerLeftCorner, Point anUpperRightCorner)
    {
       Hex[][] hexes = myHexGrid.getHexes();
+      int nh = myHexGrid.getNumHorizHexes();
+      int nv = myHexGrid.getNumVertHexes();
+      
       g2.setRenderingHint( RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
       g2.setStroke( new BasicStroke((float) (1.5 / getZoomFactor())));
-      for (int j = 0; j < myHexGrid.getNumVertHexes(); j++)
+      
+      Point lowerLeft = new Point( Math.max( 0, aLowerLeftCorner.x), Math.max( 0, aLowerLeftCorner.y));
+      Point upperRight = new Point( Math.min( nh-1, anUpperRightCorner.x), Math.min( nv-1, anUpperRightCorner.y));
+      for (int j = lowerLeft.y; j <= upperRight.y; j++)
       {
-         for (int i = 0; i < myHexGrid.getNumHorizHexes(); i++)
+         for (int i = lowerLeft.x; i <= upperRight.x; i++)
          {
             g2.setPaint( COLORS[i % COLORS.length]);
             Hex hex = hexes[i][j];

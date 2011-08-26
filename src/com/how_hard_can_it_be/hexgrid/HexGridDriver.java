@@ -20,7 +20,7 @@ public class HexGridDriver
 
    public static void main(String[] argv)
    {
-      final HexGrid hexGrid = new HexGrid(10, 10, 1.0);
+      final HexGrid hexGrid = new HexGrid(300, 300, 1.0);
       Rectangle2D.Double bounds = hexGrid.getBounds();
       System.out.printf( "Hex grid bounds, as vertices: (%7.4g, %7.4g), (%7.4g, %7.4g)%s",
          bounds.x, bounds.y, (bounds.x + bounds.width), (bounds.y + bounds.height),
