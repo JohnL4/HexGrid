@@ -14,7 +14,8 @@ import java.awt.geom.Rectangle2D;
 
 public class HexGridCanvas extends ZoomableJPanel
 {
-   private static final Color[] FOREGROUND_COLORS = { Color.RED, new Color(0, 127, 0), Color.BLUE };
+   private static final Color[] FOREGROUND_COLORS = { new Color( 0x8F0E00), new Color( 0x8F7900),
+      new Color( 0x200562), new Color( 0x006C18) };
    private static final Color[] BACKGROUND_COLORS = { new Color(0xFFCEC8), new Color(0xDCCEFF), 
       new Color(0xFFF7C8), new Color(0xC8FFD4)};
 
@@ -137,22 +138,57 @@ public class HexGridCanvas extends ZoomableJPanel
       
       Point lowerLeft = new Point( Math.max( 0, aLowerLeftCorner.x), Math.max( 0, aLowerLeftCorner.y));
       Point upperRight = new Point( Math.min( nh-1, anUpperRightCorner.x), Math.min( nv-1, anUpperRightCorner.y));
+      
+      int paintedHexCount = 0;
+      
       for (int j = lowerLeft.y; j <= upperRight.y; j++)
       {
          for (int i = lowerLeft.x; i <= upperRight.x; i++)
          {
-            g2.setPaint( FOREGROUND_COLORS[i % FOREGROUND_COLORS.length]);
+            g2.setPaint( FOREGROUND_COLORS[(paintedHexCount++) % FOREGROUND_COLORS.length]);
             Hex hex = hexes[i][j];
-            for (int k = 0; k < 6; k++)
+            Edge e;
+            // Unconditionally paint first three edges, since they won't have been painted yet.
+            for (int k = 0; k < 3; k++)
             {
-               Edge e = hex.getEdge(k);
+               e = hex.getEdge(k);
                g2.draw( new Line2D.Double( e.getVertex0(), e.getVertex1()));
+            }
+            if (i == lowerLeft.x)
+            {
+               // Hexes at far left of region get their left edge (4th edge) painted.
+               e = hex.getEdge(3);
+               g2.draw( new Line2D.Double( e.getVertex0(), e.getVertex1()));
+            }
+            if (j == lowerLeft.y)
+            {
+               // Hexes along bottom edge of region get their bottom edges (5th, 6th edges) painted.
+               e = hex.getEdge( 4);
+               g2.draw( new Line2D.Double( e.getVertex0(), e.getVertex1()));
+               e = hex.getEdge( 5);
+               g2.draw( new Line2D.Double( e.getVertex0(), e.getVertex1()));
+            }
+            else 
+            {
+               // Not bottom edge, but still, maybe an edge hex.
+               if (i == lowerLeft.x && (j % 2) == 0)
+               {
+                  // Left end of even-numbered row
+                  e = hex.getEdge( 4);
+                  g2.draw( new Line2D.Double( e.getVertex0(), e.getVertex1()));
+               }
+               else if (i == upperRight.x && (j % 2) == 1)
+               {
+                  // Right end of odd-numbered row
+                  e = hex.getEdge(5);
+                  g2.draw( new Line2D.Double( e.getVertex0(), e.getVertex1()));
+               }
             }
             Color hexColor = hex.getBackgroundColor();
             if (hexColor != null)
             {
                Path2D.Double hexPath = new Path2D.Double();
-               Edge e = hex.getEdge(0);
+               e = hex.getEdge(0);
                Point2D.Double v = e.getVertex0();
                hexPath.moveTo(v.x, v.y);
                v = e.getVertex1();
