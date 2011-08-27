@@ -42,14 +42,25 @@ public class HexGridCanvas extends ZoomableJPanel
    /**
     * Paints the given hex indexed by aHexIx the given color.  If hex indexes are out of range, does nothing.
     * @param aHexIx
+    * @param aColor
+    * @aToggle If true, hex state will be toggled between colored and not colored.
     */
-   public void paintHex( Point aHexIx, Color aColor)
+   public void paintHex( Point aHexIx, Color aColor, boolean aToggle)
    {
       if (0 <= aHexIx.x && aHexIx.x < myHexGrid.getNumHorizHexes()
             && 0 <= aHexIx.y && aHexIx.y < myHexGrid.getNumVertHexes())
       {
          Hex hex = myHexGrid.getHexes()[ aHexIx.x][ aHexIx.y];
-         hex.setBackgroundColor( aColor);
+         if (aToggle)
+         {
+            if (hex.getBackgroundColor() == null)
+               hex.setBackgroundColor( aColor);
+            else
+               hex.setBackgroundColor( null);
+         }
+         else
+            hex.setBackgroundColor( aColor);
+         
          Rectangle2D.Double hexBox = hex.getBounds2D();
          Point2D.Double lower = new Point2D.Double( hexBox.x, hexBox.y);
          Point2D.Double upper = new Point2D.Double( hexBox.x + hexBox.width,
@@ -101,8 +112,8 @@ public class HexGridCanvas extends ZoomableJPanel
       // TODO: get clip region and only paint that.
       Rectangle clipRect = aG2.getClipBounds();
       
-      aG2.setPaint( BACKGROUND_COLORS[ourPaintCount++ % BACKGROUND_COLORS.length]);
-      aG2.fill( clipRect);
+//      aG2.setPaint( BACKGROUND_COLORS[ourPaintCount++ % BACKGROUND_COLORS.length]);
+//      aG2.fill( clipRect);
       
       HexGrid hg = getHexGrid();
       Point lowerLeft = hg.hexContaining( new Point2D.Double( clipRect.getMinX(), clipRect.getMinY()));
@@ -145,7 +156,10 @@ public class HexGridCanvas extends ZoomableJPanel
       {
          for (int i = lowerLeft.x; i <= upperRight.x; i++)
          {
-            g2.setPaint( FOREGROUND_COLORS[(paintedHexCount++) % FOREGROUND_COLORS.length]);
+            g2.setPaint( 
+               // FOREGROUND_COLORS[(paintedHexCount++) % FOREGROUND_COLORS.length]
+               Color.BLACK
+                     );
             Hex hex = hexes[i][j];
             Edge e;
             // Unconditionally paint first three edges, since they won't have been painted yet.
