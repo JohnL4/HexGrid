@@ -1,0 +1,35 @@
+# --- Maven Build Outputs ---
+target/
+*.jar
+*.war
+*.ear
+*.nar
+
+# --- Other Build Outputs ---
+bin/
+*.class
+dependency-reduced-pom.xml              # Produced by Maven Shade plugin
+
+# --- IDE & Editor Metadata ---
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# --- Crash Logs & Memory Dumps ---
+*.log
+*.log.*
+/hs_err_pid*
+replay_pid*
+
+# --- OS System Junk ---
+.DS_Store
+Thumbs.db
