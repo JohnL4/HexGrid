@@ -69,7 +69,10 @@ public class HexColoringMouseListener extends MouseAdapter
 //            hgc.paintHex( myPrevHexIx, null);
 //         }
          HexGridCanvas hgc = (HexGridCanvas) anEvt.getComponent();
-         hgc.paintHex( hexIx, Color.YELLOW, true);
+         if (anEvt.getButton() == MouseEvent.BUTTON3 && myPrevHexIx != null)
+            hgc.paintHexLine( myPrevHexIx, hexIx);
+         else
+            hgc.paintHex( hexIx, Color.YELLOW, true);
          myPrevHexIx = hexIx;
       }
       catch (NoninvertibleTransformException exc)

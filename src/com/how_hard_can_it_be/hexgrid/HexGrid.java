@@ -5,6 +5,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -173,6 +175,85 @@ public class HexGrid
       Point retval = new Point( u + v/2, v); // integer division ==> truncation, which is what we want.
 
       return retval;
+   }
+
+   /**
+    * Hexes on the straight line from {@code aStart} through {@code aEnd}, inclusive.
+    * Indexes are {@code (column, row)} into {@link #myHexes}. The walk is linear interpolation in cube
+    * coordinates, then rounding; a step may fall outside the map.
+    * @param aStart
+    * @param aEnd
+    * @return
+    */
+   public List<Point> hexLine( Point aStart, Point aEnd)
+   {
+      int[] start = offsetToCube( aStart.x, aStart.y);
+      int[] end = offsetToCube( aEnd.x, aEnd.y);
+      int n = Math.max( Math.abs( end[0] - start[0]),
+         Math.max( Math.abs( end[1] - start[1]), Math.abs( end[2] - start[2])));
+      List<Point> line = new ArrayList<Point>( n + 1);
+      if (n == 0)
+      {
+         line.add( new Point( aStart));
+         return line;
+      }
+
+      // Nudge off exact cube edges so rounding does not flip between the two neighboring hexes.
+      double su = start[0] + 1e-6;
+      double sv = start[1] + 1e-6;
+      double ss = start[2] - 2e-6;
+      double eu = end[0] + 1e-6;
+      double ev = end[1] + 1e-6;
+      double es = end[2] - 2e-6;
+      for (int step = 0; step <= n; step++)
+      {
+         double t = (double) step / n;
+         int[] cube = roundCube(
+            su + (eu - su) * t,
+            sv + (ev - sv) * t,
+            ss + (es - ss) * t);
+         line.add( cubeToOffset( cube[0], cube[1]));
+      }
+      return line;
+   }
+
+   /**
+    * Odd-r offset {@code (i, j)} to cube {@code (u, v, s)} with {@code u + v + s = 0}.
+    */
+   private static int[] offsetToCube( int i, int j)
+   {
+      int u = i - j / 2;
+      int v = j;
+      return new int[] { u, v, -u - v };
+   }
+
+   /**
+    * Cube {@code (u, v)} back to odd-r offset {@code (i, j)}. Same truncation as {@link #hexContaining}.
+    */
+   private static Point cubeToOffset( int u, int v)
+   {
+      return new Point( u + v / 2, v);
+   }
+
+   /**
+    * Nearest cube to the fractional coordinates. The component with the largest rounding error is
+    * reset so {@code u + v + s = 0}.
+    */
+   private static int[] roundCube( double u, double v, double s)
+   {
+      int ru = (int) Math.round( u);
+      int rv = (int) Math.round( v);
+      int rs = (int) Math.round( s);
+      double du = Math.abs( ru - u);
+      double dv = Math.abs( rv - v);
+      double ds = Math.abs( rs - s);
+      if (du > dv && du > ds)
+         ru = -rv - rs;
+      else if (dv > ds)
+         rv = -ru - rs;
+      else
+         rs = -ru - rv;
+      return new int[] { ru, rv, rs };
    }
    
    private void setupHexes()

@@ -81,6 +81,18 @@ public class HexGridCanvas extends ZoomableJPanel
          repaint( x, y, width, height);
       }
    }
+
+   /**
+    * Paints yellow each hex on the straight line from {@code aStart} through {@code anEnd}.
+    * Does not toggle. Indexes outside the map are skipped.
+    * @param aStart
+    * @param anEnd
+    */
+   public void paintHexLine( Point aStart, Point anEnd)
+   {
+      for (Point hexIx : myHexGrid.hexLine( aStart, anEnd))
+         paintHex( hexIx, Color.YELLOW, false);
+   }
       
    /**
     * Returns initial zoom factor to make hex grid fit in initial window reasonably.
