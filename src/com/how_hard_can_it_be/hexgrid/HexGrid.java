@@ -6,6 +6,9 @@ import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A grid of hexes.  This grid is intended to be immutable once set up, but tokens can be placed on it and moved around.
  * 
@@ -15,6 +18,8 @@ import java.awt.geom.Rectangle2D;
  */
 public class HexGrid
 {
+   private static final Logger log = LoggerFactory.getLogger(HexGrid.class);
+
    /**
     * Dimensions given in x-y coordinate space, in units of hex diameters (from
     * center of edge to center of opposite edge).  For GURPS, hex diameter = 1.0 (yard).
@@ -39,7 +44,7 @@ public class HexGrid
       catch (NoninvertibleTransformException exc)
       {
          // Should never happen (obviously).
-         exc.printStackTrace();
+         log.error("Failed to invert H2-to-R2 transform", exc);
       }
       
 //      System.out.println( "h2toR2:");
@@ -48,6 +53,7 @@ public class HexGrid
 //      myR2toH2.print( new DecimalFormat( "##.####"), 8);
       
       setupHexes();
+      log.info("Built hex grid {} x {}, diameter {}", myNumHorizHexes, myNumVertHexes, aHexDiameter);
    }
 
    public String toString()

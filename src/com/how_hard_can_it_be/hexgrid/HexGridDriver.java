@@ -15,16 +15,19 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class HexGridDriver
 {
+   private static final Logger log = LoggerFactory.getLogger(HexGridDriver.class);
 
    public static void main(String[] argv)
    {
       final HexGrid hexGrid = new HexGrid(30, 30, 1.0);
       Rectangle2D.Double bounds = hexGrid.getBounds();
-      System.out.printf( "Hex grid bounds, as vertices: (%7.4g, %7.4g), (%7.4g, %7.4g)%s",
-         bounds.x, bounds.y, (bounds.x + bounds.width), (bounds.y + bounds.height),
-         Const.CRLF);
+      log.info("Hex grid bounds, as vertices: ({}, {}), ({}, {})",
+         bounds.x, bounds.y, (bounds.x + bounds.width), (bounds.y + bounds.height));
 //      System.out.println( hexGrid.toString());
       javax.swing.SwingUtilities.invokeLater(new Runnable() {
          public void run() {

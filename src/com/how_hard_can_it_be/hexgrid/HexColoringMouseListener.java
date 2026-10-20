@@ -8,8 +8,13 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class HexColoringMouseListener extends MouseAdapter
 {
+   private static final Logger log = LoggerFactory.getLogger(HexColoringMouseListener.class);
+
    /**
     * Previously-clicked point.
     */
@@ -44,7 +49,7 @@ public class HexColoringMouseListener extends MouseAdapter
       catch (NoninvertibleTransformException exc)
       {
          // Should never happen.
-         exc.printStackTrace();
+         log.error("Failed to map drag to a hex", exc);
       }
    }
    
@@ -55,7 +60,8 @@ public class HexColoringMouseListener extends MouseAdapter
       try
       {
          Point hexIx = hexContainingMouseEvent( anEvt);
-         
+         log.info("click on hex ({}, {})", hexIx.x, hexIx.y);
+
 //         System.out.printf( "\tcontaining hex is (%d, %d)%s", hexIx.x, hexIx.y, Const.CRLF);
 
 //         if (myPrevHexIx != null)
@@ -69,7 +75,7 @@ public class HexColoringMouseListener extends MouseAdapter
       catch (NoninvertibleTransformException exc)
       {
          // This really ought not to happen, unless we did something really stupid like use a zoom factor of 0.
-         exc.printStackTrace();
+         log.error("Failed to map click to a hex", exc);
       }
    }
    

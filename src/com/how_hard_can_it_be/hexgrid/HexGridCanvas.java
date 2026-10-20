@@ -12,8 +12,13 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class HexGridCanvas extends ZoomableJPanel
 {
+   private static final Logger log = LoggerFactory.getLogger(HexGridCanvas.class);
+
    private static final Color[] FOREGROUND_COLORS = { new Color( 0x8F0E00), new Color( 0x8F7900),
       new Color( 0x200562), new Color( 0x006C18) };
    private static final Color[] BACKGROUND_COLORS = { new Color(0xFFCEC8), new Color(0xDCCEFF), 
@@ -124,10 +129,9 @@ public class HexGridCanvas extends ZoomableJPanel
 //      lowerLeft = new Point(0,0);
 //      upperRight = new Point(hg.getNumHorizHexes()-1, hg.getNumVertHexes()-1);
       
-      System.out.printf( "painting, clip rect = (%7.4g, %7.4g) --> (%7.4g, %7.4g);\thex rect = (%d, %d) --> (%d, %d)%s", 
+      log.trace("painting, clip rect = ({}, {}) --> ({}, {}); hex rect = ({}, {}) --> ({}, {})",
          clipRect.getMinX(), clipRect.getMinY(), clipRect.getMaxX(), clipRect.getMaxY(),
-         lowerLeft.x, lowerLeft.y, upperRight.x, upperRight.y,
-         Const.CRLF);
+         lowerLeft.x, lowerLeft.y, upperRight.x, upperRight.y);
       
       drawHexes( aG2, lowerLeft, upperRight); 
    }
