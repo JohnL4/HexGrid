@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.how_hard_can_it_be</groupId>
   <artifactId>hexgrid</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -63,7 +63,7 @@
     </dependencies>
   </dependencyManagement>
   <properties>
-    <maven.compiler.release>8</maven.compiler.release>
+    <maven.compiler.release>27</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

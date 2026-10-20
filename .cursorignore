@@ -8,7 +8,9 @@ target/
 # --- Other Build Outputs ---
 bin/
 *.class
-dependency-reduced-pom.xml              # Produced by Maven Shade plugin
+# Produced by Maven Shade plugin
+dependency-reduced-pom.xml
+dist/
 
 # --- IDE & Editor Metadata ---
 .idea/
