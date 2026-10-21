@@ -2,3 +2,5 @@ target/
 /bin/
 dist/
 dependency-reduced-pom.xml
+.idea/
+*.iml
