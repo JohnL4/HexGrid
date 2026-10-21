@@ -218,6 +218,40 @@ public class HexGrid
    }
 
    /**
+    * Hexes on the straight line from {@code aStart} through {@code aEnd}, inclusive, rounding each axial
+    * coordinate on its own. Indexes are {@code (column, row)} into {@link #myHexes}. A step may fall outside
+    * the map. Same number of samples as {@link #hexLine}.
+    * @param aStart
+    * @param aEnd
+    * @return
+    */
+   public List<Point> hexLineAxial( Point aStart, Point aEnd)
+   {
+      int u0 = aStart.x - aStart.y / 2;
+      int v0 = aStart.y;
+      int u1 = aEnd.x - aEnd.y / 2;
+      int v1 = aEnd.y;
+      int du = u1 - u0;
+      int dv = v1 - v0;
+      int n = (Math.abs( du) + Math.abs( dv) + Math.abs( du + dv)) / 2;
+      List<Point> line = new ArrayList<Point>( n + 1);
+      if (n == 0)
+      {
+         line.add( new Point( aStart));
+         return line;
+      }
+
+      for (int step = 0; step <= n; step++)
+      {
+         double t = (double) step / n;
+         int u = (int) Math.round( u0 + du * t);
+         int v = (int) Math.round( v0 + dv * t);
+         line.add( cubeToOffset( u, v));
+      }
+      return line;
+   }
+
+   /**
     * Odd-r offset {@code (i, j)} to cube {@code (u, v, s)} with {@code u + v + s = 0}.
     */
    private static int[] offsetToCube( int i, int j)

@@ -11,6 +11,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +20,17 @@ public class HexGridCanvas extends ZoomableJPanel
 {
    private static final Logger log = LoggerFactory.getLogger(HexGridCanvas.class);
 
-   private static final Color[] FOREGROUND_COLORS = { new Color( 0x8F0E00), new Color( 0x8F7900),
-      new Color( 0x200562), new Color( 0x006C18) };
-   private static final Color[] BACKGROUND_COLORS = { new Color(0xFFCEC8), new Color(0xDCCEFF), 
-      new Color(0xFFF7C8), new Color(0xC8FFD4)};
+   private static final Color[] FOREGROUND_COLORS = { new Color( 0x8F0E00), new Color( 0x8F7900), new Color( 0x200562), new Color( 0x006C18) };
+   private static final Color[] BACKGROUND_COLORS = { new Color(0xFFCEC8), new Color(0xDCCEFF), new Color(0xFFF7C8), new Color(0xC8FFD4)};
+
+   /** Partially-opaque red used for click, drag, and {@link HexGrid#hexLine} fills. */
+   static final Color ourHexFill = new Color( 0x50ff0000, true);
+
+   /** Partially-opaque grey used for the axial (incorrectly-rounded) line walk.
+    * Compositing like this allows you to see where the same hex is hit twice by this algorithm (which is incorrect),
+    * because it's darker.
+    * */
+   static final Color ourAxialLine = new Color( 0x40000000, true);
 
    /**
     * How many times {@see #paintZoomableContents(Graphics2D)} has been called.
@@ -64,7 +72,13 @@ public class HexGridCanvas extends ZoomableJPanel
                hex.setBackgroundColor( null);
          }
          else
-            hex.setBackgroundColor( aColor);
+         {
+            Color existing = hex.getBackgroundColor();
+            if (aColor == null || existing == null)
+               hex.setBackgroundColor( aColor);
+            else
+               hex.setBackgroundColor( sourceOver( existing, aColor));
+         }
          
          Rectangle2D.Double hexBox = hex.getBounds2D();
          Point2D.Double lower = new Point2D.Double( hexBox.x, hexBox.y);
@@ -83,15 +97,50 @@ public class HexGridCanvas extends ZoomableJPanel
    }
 
    /**
-    * Paints yellow each hex on the straight line from {@code aStart} through {@code anEnd}.
-    * Does not toggle. Indexes outside the map are skipped.
+    * Paints each hex on {@link HexGrid#hexLine} from {@code aStart} through {@code anEnd} with
+    * {@link #ourHexFill}. Does not toggle. Indexes outside the map are skipped.
     * @param aStart
     * @param anEnd
     */
    public void paintHexLine( Point aStart, Point anEnd)
    {
-      for (Point hexIx : myHexGrid.hexLine( aStart, anEnd))
-         paintHex( hexIx, Color.YELLOW, false);
+      paintHexes( myHexGrid.hexLine( aStart, anEnd), ourHexFill);
+   }
+
+   /**
+    * Paints each hex in {@code aHexIxs} with {@code aColor}. Does not toggle. Indexes outside the map are skipped.
+    * @param aHexIxs
+    * @param aColor
+    */
+   void paintHexes( List<Point> aHexIxs, Color aColor)
+   {
+      for (Point hexIx : aHexIxs)
+         paintHex( hexIx, aColor, false);
+   }
+
+   /**
+    * Source-over of {@code aSrc} onto {@code aDest}, straight alpha. Returns {@code aSrc} when the result is fully transparent.
+    */
+   private static Color sourceOver( Color aDest, Color aSrc)
+   {
+      float srcA = aSrc.getAlpha() / 255f;
+      float dstA = aDest.getAlpha() / 255f;
+      float outA = srcA + dstA * (1f - srcA);
+      if (outA == 0f)
+         return aSrc;
+      float outR = (aSrc.getRed() / 255f * srcA + aDest.getRed() / 255f * dstA * (1f - srcA)) / outA;
+      float outG = (aSrc.getGreen() / 255f * srcA + aDest.getGreen() / 255f * dstA * (1f - srcA)) / outA;
+      float outB = (aSrc.getBlue() / 255f * srcA + aDest.getBlue() / 255f * dstA * (1f - srcA)) / outA;
+      return new Color( clamp01( outR), clamp01( outG), clamp01( outB), clamp01( outA));
+   }
+
+   private static float clamp01( float aComponent)
+   {
+      if (aComponent < 0f)
+         return 0f;
+      if (aComponent > 1f)
+         return 1f;
+      return aComponent;
    }
       
    /**

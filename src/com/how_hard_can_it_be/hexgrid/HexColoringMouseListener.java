@@ -1,6 +1,5 @@
 package com.how_hard_can_it_be.hexgrid;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -42,7 +41,7 @@ public class HexColoringMouseListener extends MouseAdapter
          else
          {
             HexGridCanvas hgc = (HexGridCanvas) anEvt.getComponent();
-            hgc.paintHex( hexIx, Color.YELLOW, true);
+            hgc.paintHex( hexIx, HexGridCanvas.ourHexFill, true);
             myPrevDraggedHexIx = hexIx;
          }
       }
@@ -70,9 +69,12 @@ public class HexColoringMouseListener extends MouseAdapter
 //         }
          HexGridCanvas hgc = (HexGridCanvas) anEvt.getComponent();
          if (anEvt.getButton() == MouseEvent.BUTTON3 && myPrevHexIx != null)
+         {
+            hgc.paintHexes( hgc.getHexGrid().hexLineAxial( myPrevHexIx, hexIx), HexGridCanvas.ourAxialLine);
             hgc.paintHexLine( myPrevHexIx, hexIx);
+         }
          else
-            hgc.paintHex( hexIx, Color.YELLOW, true);
+            hgc.paintHex( hexIx, HexGridCanvas.ourHexFill, true);
          myPrevHexIx = hexIx;
       }
       catch (NoninvertibleTransformException exc)
