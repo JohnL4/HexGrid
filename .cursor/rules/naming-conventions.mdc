@@ -1,0 +1,22 @@
+---
+description: Parameter-naming style
+alwaysApply: true
+---
+
+# Parameter-naming style
+
+Parameters are named with an "a" prefix, unless they start with a vowel (i.e., are pronounced beginning with a vowel sound), in which case they are named with a "an" prefix.
+
+Class instance variables are named with a "my" prefix. Static (shared) class variables are named with an "our" prefix.
+
+For example:
+
+```java
+public void setHex( Point aHex, anUpdateValue)
+{
+   myHex = aHex;
+   myNewValue = anUpdateValue;
+}
+```
+
+```java
